@@ -372,3 +372,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 .gallery.gallery-dual .dual-phone-2,.panel-karoane .gallery.gallery-dual .dual-phone-2{transform:translate(-3px,-5px) rotate(5deg);}
 .gallery.gallery-dual .dual-phone img{width:100%;height:auto;object-fit:contain;filter:none!important;-webkit-filter:none!important;}
 @media(max-width:390px){.gallery.gallery-dual{gap:17px;padding:19px 17px}.gallery.gallery-dual .dual-phone{width:30%;}}
+
+
+/* The full-screen WebGL glass material replaces CSS ellipses when available. */
+.fluid-scene { background:linear-gradient(145deg,#d6eaff 0%,#b8baf7 48%,#f7d9ef 100%); }
+.liquid-glass-canvas {position:absolute;inset:0;z-index:3;display:block;width:100%;height:100%;opacity:0;pointer-events:none;transition:opacity 900ms ease;}
+.liquid-glass-canvas[data-ready="true"] {opacity:1;}
+.fluid-scene:has(.liquid-glass-canvas[data-ready="true"]) > .fluid-blob {opacity:0;animation:none;visibility:hidden;}
+.fluid-scene:has(.liquid-glass-canvas[data-ready="true"])::before,
+.fluid-scene:has(.liquid-glass-canvas[data-ready="true"])::after {opacity:0;animation:none;visibility:hidden;}
+/* Ink on the pastel palette; bright typography remains on dark mode. */
+:root:not([data-theme="dark"]) .site-brand {color:#20345f;text-shadow:0 1px 10px rgb(255 255 255 / 30%);}
+:root:not([data-theme="dark"]) .site-brand h1 span {color:#806dd8;}
+:root:not([data-theme="dark"]) .site-brand p {color:#3d4b6e;text-shadow:0 1px 10px rgb(255 255 255 / 38%);}
+:root[data-theme="dark"] .site-brand h1 {color:#f8f8ff;}
+:root[data-theme="dark"] .site-brand p {color:#e6e8fa;}
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) .site-brand {color:#f8f8ff;}
+  :root:not([data-theme="light"]) .site-brand p {color:#e6e8fa;}
+}
+@media (prefers-reduced-motion:reduce) {.liquid-glass-canvas{transition:none;}}
+/* Keep the native-ratio screenshots entirely inside the showcase. */
+.gallery.gallery-dual{height:clamp(275px,38svh,350px);min-height:0;gap:clamp(14px,4vw,22px);padding:21px 15px;}
+.gallery.gallery-dual .dual-phone,.panel-karoane .gallery.gallery-dual .dual-phone{
+  box-sizing:border-box;max-width:36%;width:clamp(86px,26%,110px);height:auto;
+  flex:0 0 auto;overflow:hidden;border:1px solid rgba(255,255,255,.8);
+  border-radius:17px;box-shadow:0 9px 21px rgba(13,27,52,.25);
+}
+.gallery.gallery-dual .dual-phone img{width:100%;height:auto;object-fit:contain;filter:none!important;-webkit-filter:none!important;}
+@media(max-height:720px){.gallery.gallery-dual{height:clamp(238px,36svh,280px);padding:16px 12px;}.gallery.gallery-dual .dual-phone{width:clamp(78px,24%,101px);}}

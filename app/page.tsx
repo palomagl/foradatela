@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Mail, Moon, Sun, X, Plus } from 'lucide-react';
 import { Github, Linkedin } from '@/components/social-icons';
 import { projects, profile, type Project } from '@/lib/projects';
+import { LiquidGlassScene } from '@/components/liquid-glass-scene';
 
 const details: Record<string, { subtitle: string; description: string }> = {
   stopou: { subtitle: 'Jogo de palavras · Multiplayer', description: 'Crie uma sala, compartilhe o código com seus amigos e joguem Stop juntos, cada um do seu celular.' },
@@ -22,9 +23,7 @@ type Theme = 'system' | 'light' | 'dark';
 export default function Home() {
   const [theme, setTheme] = useState<Theme>('system');
   const [selected, setSelected] = useState<Project | null>(null);
-  const [activePreview, setActivePreview] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
-  const gallery = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -61,12 +60,12 @@ export default function Home() {
   const socials = [
     { name: 'GitHub', href: profile.github, Icon: Github },
     { name: 'LinkedIn', href: profile.linkedin, Icon: Linkedin },
-    { name: 'E-mail', href: profile.email ? `mailto:${profile.email}` : undefined, Icon: Mail },
+    ...(profile.email ? [{ name: 'E-mail', href: `mailto:${profile.email}`, Icon: Mail }] : []),
   ];
 
   return (
     <main className="universe relative isolate min-h-svh" data-panel-open={selected ? 'true' : 'false'}>
-      <div className="fluid-scene" aria-hidden="true"><span className="fluid-blob blob-one" /><span className="fluid-blob blob-two" /><span className="fluid-blob blob-three" /></div>
+      <div className="fluid-scene" aria-hidden="true"><span className="fluid-blob blob-one" /><span className="fluid-blob blob-two" /><span className="fluid-blob blob-three" /><LiquidGlassScene /></div>
       <div className="home-screen mx-auto flex min-h-svh w-full flex-col">
         <header className="screen-header flex justify-end">
           <div className="site-brand"><h1>fora da tela<span>.</span></h1><p>Projetos que saem do papel.</p></div>
@@ -81,7 +80,7 @@ export default function Home() {
         <section id="projects" className="project-grid grid grid-cols-3" aria-label="Projetos">
           {projects.map((project) => (
             <button className="project" key={project.id} aria-label={`Conhecer ${project.name}`}
-              onClick={(event) => { trigger.current = event.currentTarget; setActivePreview(0); setSelected(project); }}>
+              onClick={(event) => { trigger.current = event.currentTarget; setSelected(project); }}>
               <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
                 {project.icon
                   ? <img src={project.icon} alt="" width={96} height={96} draggable={false} />
