@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Mail, Moon, Sun, X, Plus } from 'lucide-react';
 import { Github, Linkedin } from '@/components/social-icons';
-import { OrbitalScene } from '@/components/orbital-scene';
 import { projects, profile, type Project } from '@/lib/projects';
 
 const details: Record<string, { subtitle: string; description?: string }> = {
@@ -66,11 +65,10 @@ export default function Home() {
 
   return (
     <main className="universe relative isolate min-h-svh" data-panel-open={selected ? 'true' : 'false'}>
-      <OrbitalScene />
-      <div className="scene-shade" aria-hidden="true" />
+      <div className="fluid-scene" aria-hidden="true"><span className="fluid-blob blob-one" /><span className="fluid-blob blob-two" /><span className="fluid-blob blob-three" /></div>
       <div className="home-screen mx-auto flex min-h-svh w-full flex-col">
         <header className="screen-header flex justify-end">
-          <h1 className="sr-only">Fora da Tela · {profile.name}</h1>
+          <div className="site-brand"><h1>fora da tela<span>.</span></h1><p>Projetos que saem do papel.</p></div>
           <button className="theme-switch liquid-glass" onClick={changeTheme}
             aria-label={`Tema: ${theme === 'system' ? 'sistema' : theme === 'light' ? 'claro' : 'escuro'}. Alternar tema`}
             title="Tema: sistema → claro → escuro">
