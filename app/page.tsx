@@ -123,6 +123,22 @@ export default function Home() {
             <h3>{selected.headline || (selected.url ? `Explore ${selected.name}.` : 'Novidades em breve.')}</h3>
             {details[selected.id]?.description && <p className="project-description">{details[selected.id].description}</p>}
 
+            {selected.id === 'rotina' && (
+              <div className="telegram-flow" aria-label="Exemplo ilustrativo do registro de gastos pelo Telegram">
+                <div className="telegram-example-label">COMO FUNCIONA · EXEMPLO</div>
+                <div className="telegram-message">
+                  <span className="telegram-mark" aria-hidden="true">➤</span>
+                  <span>Gastei R$ 35 no mercado</span>
+                  <span className="telegram-check" aria-hidden="true">✓✓</span>
+                </div>
+                <div className="telegram-result">
+                  <span aria-hidden="true" className="telegram-sync">↓</span>
+                  <span><strong>Gasto registrado</strong><small>Sincronizado com Minha Rotina</small></span>
+                  <span className="telegram-done" aria-hidden="true">✓</span>
+                </div>
+              </div>
+            )}
+
             <div className="gallery gallery-dual" aria-label={`Prévia de ${selected.name} em celulares`}>
               {[0, 1].map((index) => (
                 <div className={`phone-preview dual-phone dual-phone-${index + 1}`} key={index}>
