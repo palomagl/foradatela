@@ -171,3 +171,15 @@ html,body { background:#b6baf1; }
 .gallery.gallery-dual{margin-bottom:22px;}
 .gallery.gallery-dual + .cta{margin-top:12px;}
 .panel .project-description{margin-bottom:20px;}
+
+/* Refined editorial typography and clearer interactive dock. */
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Inter,sans-serif;letter-spacing:-.012em;}
+.site-brand h1{font-weight:720;letter-spacing:-.06em;}
+.panel-heading h2{font-weight:650;letter-spacing:-.055em;}
+.panel-heading p{font-size:12px;letter-spacing:.012em;font-weight:500;opacity:.9;}
+.panel h3{font-weight:680;font-size:clamp(27px,7.4vw,33px);line-height:1.08;letter-spacing:-.055em;}
+.project-description{font-size:15px;line-height:1.6;font-weight:400;letter-spacing:-.007em;max-width:39ch;color:#f7f9ff;}
+.project-name{font-weight:540;letter-spacing:-.018em;}
+.dock-item:not(:disabled){cursor:pointer;transition:transform .22s,background .22s,box-shadow .22s;}
+.dock-item:not(:disabled):active{transform:scale(.93);}
+.dock-item:disabled{opacity:.48;}
