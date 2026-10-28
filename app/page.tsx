@@ -7,12 +7,12 @@ import { projects, profile, type Project } from '@/lib/projects';
 
 const details: Record<string, { subtitle: string; description: string }> = {
   stopou: { subtitle: 'Jogo de palavras · Multiplayer', description: 'O clássico jogo de Stop em versão digital. Reúna os amigos, escolha as categorias e desafie todo mundo em tempo real.' },
-  ritimo: { subtitle: 'Aplicativo · Ritmo', description: 'Conheça o Ritmo e explore a experiência diretamente no aplicativo. Novas capturas reais serão adicionadas à apresentação.' },
+  ritimo: { subtitle: 'Saúde, hábitos e alimentação', description: 'Cuide de você no seu ritmo. Acompanhe água, alimentação, movimento e metas em uma rotina mais organizada.' },
   rotina: { subtitle: 'Organização pessoal', description: 'Organize tarefas, acompanhe hábitos e planeje suas metas em um espaço pensado para o seu dia a dia.' },
   karoane: { subtitle: 'E-commerce · Papelaria e Bazar', description: 'Papelaria, bazar e muito mais. Explore um catálogo digital com uma experiência pensada para o celular.' },
   financas: { subtitle: 'Finanças pessoais', description: 'Registre seus gastos, acompanhe suas movimentações e tenha uma visão mais clara do seu dinheiro.' },
   doe: { subtitle: 'Doação de sangue · Rio Grande do Sul', description: 'Encontre hemocentros, confira informações sobre doação de sangue e acompanhe sua jornada como doador.' },
-  bruto: { subtitle: 'Delivery · Demonstração', description: 'Explore o cardápio e a experiência de pedidos de uma hamburgueria digital. Este projeto é uma demonstração, sem pedidos reais.' },
+  bruto: { subtitle: 'Hamburgueria · Demonstração', description: 'Conheça o cardápio, explore os hambúrgueres e navegue por uma experiência de delivery. Demonstração sem pedidos reais.' },
   barbearia: { subtitle: 'Agendamento de serviços', description: 'Uma experiência de agendamento para conhecer serviços e escolher horários em uma barbearia. Projeto em preparação.' },
   vertice: { subtitle: 'Marmoraria · Projeto 3D', description: 'Uma vitrine digital para visualizar projetos de marmoraria e explorar opções de orçamento. Projeto em preparação.' },
 };
@@ -123,14 +123,14 @@ export default function Home() {
             <h3>{selected.headline || (selected.url ? `Explore ${selected.name}.` : 'Novidades em breve.')}</h3>
             {details[selected.id]?.description && <p className="project-description">{details[selected.id].description}</p>}
 
-            <div className="gallery gallery-dual" aria-label={`Duas telas de ${selected.name}`}>
+            <div className="gallery gallery-dual" aria-label={`Prévia de ${selected.name} em celulares`}>
               {[0, 1].map((index) => (
                 <div className={`phone-preview dual-phone dual-phone-${index + 1}`} key={index}>
                   <div className="phone-camera" aria-hidden="true" />
                   {selected.screenshots[index] ? (
                     <img src={selected.screenshots[index]} alt={`Captura real ${index + 1} de ${selected.name}`} width={390} height={844} />
                   ) : (
-                    <div className="phone-pending"><span>Outra tela</span><small>em breve</small></div>
+                    <div className="phone-pending"><span>Prévia</span><small>aguardando captura real</small></div>
                   )}
                 </div>
               ))}
