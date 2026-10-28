@@ -156,3 +156,13 @@ html,body { background:#b6baf1; }
 }
 @media (max-height:740px) {.screen-header {height:clamp(180px,26svh,245px);} .site-brand h1{font-size:29px;}}
 @media (prefers-reduced-motion:reduce){.fluid-scene::before,.fluid-blob{animation:none!important;will-change:auto;}}
+
+/* Project preview: two whole-phone mockups, with true screenshots only. */
+.gallery.gallery-dual{display:flex;align-items:center;justify-content:center;gap:clamp(8px,3vw,20px);height:clamp(260px,37svh,350px);overflow:hidden;padding:24px 18px 10px;perspective:850px;}
+.gallery-dual .dual-phone{flex:0 0 auto;width:clamp(110px,34%,145px);height:clamp(225px,31svh,305px);margin:0;overflow:hidden;display:flex;flex-direction:column;border-radius:22px;border:5px solid #121720;background:#eff3fa;box-shadow:0 0 0 1px #a2b3c8,0 0 0 3px #4c5670,9px 17px 22px #09152b66;transform-origin:center center;}
+.gallery-dual .dual-phone-1{transform:translateY(11px) rotate(-9deg) rotateY(7deg);}
+.gallery-dual .dual-phone-2{transform:translateY(-5px) rotate(8deg) rotateY(-7deg);}
+.gallery-dual .dual-phone img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.gallery-dual .phone-pending{flex:1;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#64748b;font-size:12px;text-align:center;padding:10px;background:linear-gradient(155deg,#f9fbff,#dde6f2);}
+.gallery-dual .phone-pending small{font-size:10px;}
+@media(max-width:359px){.gallery.gallery-dual{gap:10px;padding:18px 10px}.gallery-dual .dual-phone{width:38%;}}
