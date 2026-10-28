@@ -364,3 +364,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
   .gallery.gallery-dual { gap: 9px; padding-inline: 7px; }
   .gallery.gallery-dual .dual-phone { width: min(38%, 102px); }
 }
+
+/* Keep both previews entirely inside their showcase, on narrow iPhones too. */
+.gallery.gallery-dual{height:clamp(250px,37svh,344px);padding:20px 21px;gap:clamp(18px,6%,25px);overflow:hidden;}
+.gallery.gallery-dual .dual-phone,.panel-karoane .gallery.gallery-dual .dual-phone{width:min(31%,104px);max-width:none;flex:0 0 auto;border:1px solid rgb(241 245 255 / 72%);box-shadow:0 8px 19px rgb(14 28 48 / 24%);border-radius:15px;overflow:hidden;}
+.gallery.gallery-dual .dual-phone-1,.panel-karoane .gallery.gallery-dual .dual-phone-1{transform:translate(3px,5px) rotate(-5deg);}
+.gallery.gallery-dual .dual-phone-2,.panel-karoane .gallery.gallery-dual .dual-phone-2{transform:translate(-3px,-5px) rotate(5deg);}
+.gallery.gallery-dual .dual-phone img{width:100%;height:auto;object-fit:contain;filter:none!important;-webkit-filter:none!important;}
+@media(max-width:390px){.gallery.gallery-dual{gap:17px;padding:19px 17px}.gallery.gallery-dual .dual-phone{width:30%;}}
