@@ -5,16 +5,16 @@ import { ArrowUpRight, Mail, Moon, Sun, X, Plus } from 'lucide-react';
 import { Github, Linkedin } from '@/components/social-icons';
 import { projects, profile, type Project } from '@/lib/projects';
 
-const details: Record<string, { subtitle: string; description?: string }> = {
+const details: Record<string, { subtitle: string; description: string }> = {
   stopou: { subtitle: 'Jogo de palavras · Multiplayer', description: 'O clássico jogo de Stop em versão digital. Reúna os amigos, escolha as categorias e desafie todo mundo em tempo real.' },
-  ritimo: { subtitle: 'Rítimo' },
-  rotina: { subtitle: 'Dashboard pessoal' },
-  karoane: { subtitle: 'E-commerce · Papelaria e Bazar', description: 'Papelaria, presentes e muito mais. Explore o catálogo da Karoane em uma experiência pensada para o celular.' },
-  financas: { subtitle: 'Finanças pessoais' },
-  doe: { subtitle: 'Doação de sangue · Rio Grande do Sul' },
-  bruto: { subtitle: 'Burger & Chapa' },
-  barbearia: { subtitle: 'Em preparação' },
-  vertice: { subtitle: 'Em preparação' },
+  ritimo: { subtitle: 'Aplicativo digital', description: 'Conheça o Ritmo, explore suas telas e descubra a experiência que está sendo desenvolvida.' },
+  rotina: { subtitle: 'Organização pessoal', description: 'Organize tarefas, acompanhe hábitos e planeje suas metas em um espaço pensado para o seu dia a dia.' },
+  karoane: { subtitle: 'E-commerce · Papelaria e Bazar', description: 'Papelaria, bazar e muito mais. Explore um catálogo digital com uma experiência pensada para o celular.' },
+  financas: { subtitle: 'Finanças pessoais', description: 'Registre seus gastos, acompanhe suas movimentações e tenha uma visão mais clara do seu dinheiro.' },
+  doe: { subtitle: 'Doação de sangue · Rio Grande do Sul', description: 'Encontre hemocentros, confira informações sobre doação de sangue e acompanhe sua jornada como doador.' },
+  bruto: { subtitle: 'Delivery · Demonstração', description: 'Explore o cardápio e a experiência de pedidos de uma hamburgueria digital. Este projeto é uma demonstração, sem pedidos reais.' },
+  barbearia: { subtitle: 'Agendamento de serviços', description: 'Uma experiência de agendamento para conhecer serviços e escolher horários em uma barbearia. Projeto em preparação.' },
+  vertice: { subtitle: 'Marmoraria · Projeto 3D', description: 'Uma vitrine digital para visualizar projetos de marmoraria e explorar opções de orçamento. Projeto em preparação.' },
 };
 
 type Theme = 'system' | 'light' | 'dark';
