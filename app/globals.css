@@ -193,3 +193,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 .gallery-dual .dual-phone{height:clamp(215px,29svh,265px);}
 .panel .gallery.gallery-dual + .cta{margin-top:14px;}
 .gallery-dual .phone-pending{line-height:1.3;}
+
+
+/* A compact, explicitly illustrative Telegram-to-budget flow. It is not a real chat screenshot. */
+.telegram-flow{margin:15px 0 19px;padding:13px 14px 12px;border:1px solid rgb(255 255 255 / 40%);border-radius:19px;background:linear-gradient(145deg,rgb(229 240 255 / 15%),rgb(49 77 124 / 21%));box-shadow:inset 0 1px 0 #ffffff38;}
+.telegram-example-label{font-size:10px;letter-spacing:.14em;font-weight:650;color:#f3f8ffe8;margin-bottom:11px;}
+.telegram-message{background:rgb(229 247 255 / 91%);color:#21344b;display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:14px 14px 4px 14px;font-size:12px;box-shadow:0 4px 12px #081a3036;margin-left:27px;}
+.telegram-mark{color:#269cdb;font-size:19px;line-height:1;transform:rotate(-18deg);}
+.telegram-check{color:#168ac4;margin-left:auto;font-size:12px;white-space:nowrap;}
+.telegram-result{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 6px;color:#fff;}
+.telegram-result strong{display:block;font-size:12px;font-weight:650;}
+.telegram-result small{display:block;color:#ecf5ffda;font-size:10px;margin-top:3px;}
+.telegram-sync{color:#deefff;font-size:18px;}
+.telegram-done{margin-left:auto;background:#58c4a6;color:#082c23;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:750;}
