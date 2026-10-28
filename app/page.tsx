@@ -7,7 +7,7 @@ import { projects, profile, type Project } from '@/lib/projects';
 
 const details: Record<string, { subtitle: string; description: string }> = {
   stopou: { subtitle: 'Jogo de palavras · Multiplayer', description: 'O clássico jogo de Stop em versão digital. Reúna os amigos, escolha as categorias e desafie todo mundo em tempo real.' },
-  ritimo: { subtitle: 'Aplicativo digital', description: 'Conheça o Ritmo, explore suas telas e descubra a experiência que está sendo desenvolvida.' },
+  ritimo: { subtitle: 'Aplicativo · Ritmo', description: 'Conheça o Ritmo e explore a experiência diretamente no aplicativo. Novas capturas reais serão adicionadas à apresentação.' },
   rotina: { subtitle: 'Organização pessoal', description: 'Organize tarefas, acompanhe hábitos e planeje suas metas em um espaço pensado para o seu dia a dia.' },
   karoane: { subtitle: 'E-commerce · Papelaria e Bazar', description: 'Papelaria, bazar e muito mais. Explore um catálogo digital com uma experiência pensada para o celular.' },
   financas: { subtitle: 'Finanças pessoais', description: 'Registre seus gastos, acompanhe suas movimentações e tenha uma visão mais clara do seu dinheiro.' },
