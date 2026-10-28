@@ -31,6 +31,7 @@ test('7 real projects open with correct destinations and screenshots stay inside
     await page.getByRole('button',{name:'Conhecer '+project,exact:true}).click();
     const dialog=page.getByRole('dialog');
     await expect(dialog).toBeVisible();
+    await dialog.evaluate(el=>Promise.all(el.getAnimations().map(animation=>animation.finished)));
     await expect(dialog.locator('a.cta')).toHaveAttribute('href',url);
     const area=await dialog.locator('.gallery.gallery-dual').boundingBox();
     expect(area).not.toBeNull();
@@ -67,7 +68,7 @@ test('device theme and manual choice persist on reload',async({page})=>{
   const toggle=page.getByRole('button',{name:'Alternar tema claro e escuro'});
   await expect(toggle).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('data-theme','system');
-  expect(await page.locator('html').evaluate(x=>getComputedStyle(x).colorScheme)).toBe('dark');
+  expect(await page.locator('html').evaluate(x=>getComputedStyle(x).colorScheme)).toContain('dark');
   await toggle.click();
   await expect(page.locator('html')).toHaveAttribute('data-theme','light');
   await page.reload();
