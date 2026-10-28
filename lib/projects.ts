@@ -1,7 +1,7 @@
 export type Project = { id: string; name: string; icon?: string; headline?: string; url?: string; screenshots: string[] };
 export const projects: Project[] = [
   { id: 'stopou', name: 'Stopou!', icon: '/projects/stopou.png', headline: 'Quem vai gritar STOP primeiro?', url: 'https://jogostop-rabisco.vercel.app/', screenshots: ['/projects/stopou-preview.png'] },
-  { id: 'ritimo', name: 'Rítimo', icon: '/projects/ritimo.png', screenshots: [] },
+  { id: 'ritimo', name: 'Ritmo', icon: '/projects/ritimo.png', screenshots: [] },
   { id: 'rotina', name: 'Minha Rotina', url: 'https://dashboard-three-khaki-68.vercel.app/', icon: '/projects/rotina.png', screenshots: ['/projects/rotina-preview.png'] },
   { id: 'karoane', name: 'Karoane', url: 'https://karoane.vercel.app/', icon: '/projects/karoane.png', headline: 'Papelaria, bazar e muito mais.', screenshots: ['/projects/karoane-preview.png'] },
   { id: 'financas', name: 'Minhas Finanças', url: 'https://minhas-financas-9v4l.vercel.app/', icon: '/projects/financas.png', screenshots: ['/projects/financas-preview.png'] },
