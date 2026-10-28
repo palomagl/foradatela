@@ -183,3 +183,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 .dock-item:not(:disabled){cursor:pointer;transition:transform .22s,background .22s,box-shadow .22s;}
 .dock-item:not(:disabled):active{transform:scale(.93);}
 .dock-item:disabled{opacity:.48;}
+
+/* Keep the approved Karoane sheet composition for every project. */
+.panel{padding-top:34px;}
+.panel-heading h2{font-size:23px;}
+.panel h3{max-width:330px;margin-top:22px;margin-bottom:12px;}
+.panel .project-description{margin-bottom:18px;max-width:none;}
+.gallery.gallery-dual{height:clamp(250px,33svh,300px);margin-top:16px;margin-bottom:24px;}
+.gallery-dual .dual-phone{height:clamp(215px,29svh,265px);}
+.panel .gallery.gallery-dual + .cta{margin-top:14px;}
+.gallery-dual .phone-pending{line-height:1.3;}
