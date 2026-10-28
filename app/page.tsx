@@ -123,31 +123,18 @@ export default function Home() {
             <h3>{selected.headline || (selected.url ? `Explore ${selected.name}.` : 'Novidades em breve.')}</h3>
             {details[selected.id]?.description && <p className="project-description">{details[selected.id].description}</p>}
 
-            {selected.screenshots.length ? (
-              <>
-                <div ref={gallery} className="gallery" aria-label={`Prévias reais de ${selected.name}`}
-                  onScroll={() => {
-                    const element = gallery.current;
-                    if (element) setActivePreview(Math.round(element.scrollLeft / element.clientWidth));
-                  }}>
-                  {selected.screenshots.map((src, index) => (
-                    <div className="preview-slide" key={src}>
-                      <div className="phone-preview"><div className="phone-camera" aria-hidden="true" />
-                        <img src={src} alt={`Tela real de ${selected.name}, ${index + 1}`} width={390} height={844} />
-                      </div>
-                    </div>
-                  ))}
+            <div className="gallery gallery-dual" aria-label={`Duas telas de ${selected.name}`}>
+              {[0, 1].map((index) => (
+                <div className={`phone-preview dual-phone dual-phone-${index + 1}`} key={index}>
+                  <div className="phone-camera" aria-hidden="true" />
+                  {selected.screenshots[index] ? (
+                    <img src={selected.screenshots[index]} alt={`Captura real ${index + 1} de ${selected.name}`} width={390} height={844} />
+                  ) : (
+                    <div className="phone-pending"><span>Outra tela</span><small>em breve</small></div>
+                  )}
                 </div>
-                <div className="pagination" aria-label="Selecionar prévia">
-                  {selected.screenshots.map((src, index) => (
-                    <button key={src} aria-label={`Ver prévia ${index + 1}`} aria-current={activePreview === index ? 'true' : undefined}
-                      onClick={() => gallery.current?.scrollTo({ left: index * gallery.current.clientWidth, behavior: 'smooth' })} />
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="preview-empty"><Plus size={30} strokeWidth={1} /><p>Prévias em breve</p></div>
-            )}
+              ))}
+            </div>
 
             {selected.url ? (
               <a className="cta flex items-center justify-center" href={selected.url} target="_blank" rel="noopener noreferrer">
