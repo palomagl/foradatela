@@ -48,7 +48,7 @@ export default function Home() {
     const next = active === 'light' ? 'dark' : 'light';
     setTheme(next);
     document.documentElement.dataset.theme = next;
-    document.documentElement.style.colorScheme = next === 'system' ? 'light dark' : next;
+    document.documentElement.style.colorScheme = next;
     try { localStorage.setItem('theme', next); } catch { /* Theme works without persistence. */ }
   }
 
