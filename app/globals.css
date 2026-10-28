@@ -206,3 +206,76 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 .telegram-result small{display:block;color:#ecf5ffda;font-size:10px;margin-top:3px;}
 .telegram-sync{color:#deefff;font-size:18px;}
 .telegram-done{margin-left:auto;background:#58c4a6;color:#082c23;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:750;}
+
+
+/* Liquid Glass 01 — moving pearl-glass material, intentionally behind the icons. */
+.fluid-scene {
+ background:radial-gradient(ellipse at 27% 10%,#d9f1ff,transparent 44%),radial-gradient(ellipse at 80% 80%,#ffe3ef,transparent 51%),linear-gradient(140deg,#afc2fa 0%,#b8b5f7 40%,#e3d5fb 68%,#fce8dc 100%);
+}
+.fluid-scene::before{inset:-15%;background:radial-gradient(ellipse at 17% 23%,#fff9,transparent 37%),radial-gradient(ellipse at 75% 30%,#8d9ff08a,transparent 44%),radial-gradient(ellipse at 61% 83%,#fff3ebdd,transparent 38%);animation:glass-light 26s ease-in-out infinite alternate;}
+.fluid-scene::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(130deg,#ffffff44,transparent 55%,#f8edff38);mix-blend-mode:screen;}
+.fluid-blob {
+ width:min(92vw,530px);height:min(92vw,530px);aspect-ratio:1;
+ border:1.5px solid #ffffffd9;
+ border-radius:48% 52% 61% 39% / 55% 43% 57% 45%;
+ background:
+  radial-gradient(ellipse at 25% 17%,#fffffff0,transparent 33%),
+  radial-gradient(ellipse at 79% 79%,#707fea6b,transparent 50%),
+  radial-gradient(ellipse at 50% 50%,#f1efff99,#a0adf455 60%,#fbd4f264);
+ box-shadow:inset 8px 11px 20px #ffffffe8,inset -18px -25px 45px #626ec765,0 26px 66px #7783be4d,0 0 15px #ffffff9c;
+ backdrop-filter:blur(6px) saturate(145%);-webkit-backdrop-filter:blur(6px) saturate(145%);
+ will-change:transform;pointer-events:none;
+}
+.fluid-blob::before{content:"";position:absolute;inset:3%;border-radius:inherit;border:1px solid #ffffff99;box-shadow:inset 11px 14px 35px #ffffff87;background:radial-gradient(ellipse at 30% 21%,#ffffff8a,transparent 34%)}
+.fluid-blob::after{content:"";position:absolute;inset:22%;border-radius:inherit;background:radial-gradient(circle,#a4a2f354,transparent 72%);filter:blur(18px)}
+.blob-one{top:-15%;left:-35%;animation:glass-orbit-a 24s ease-in-out infinite alternate}
+.blob-two{top:29%;right:-45%;width:min(88vw,510px);height:min(88vw,510px);animation:glass-orbit-b 30s ease-in-out infinite alternate}
+.blob-three{bottom:-27%;left:-33%;animation:glass-orbit-c 32s ease-in-out infinite alternate}
+@keyframes glass-light{to{transform:translate3d(5%,-4%,0) rotate(4deg)}}
+@keyframes glass-orbit-a{to{transform:translate3d(13%,7%,0) rotate(13deg) scale(1.04);border-radius:58% 42% 41% 59% / 42% 63% 37% 58%}}
+@keyframes glass-orbit-b{to{transform:translate3d(-14%,-11%,0) rotate(-16deg) scale(.97);border-radius:39% 61% 54% 46% / 62% 41% 59% 38%}}
+@keyframes glass-orbit-c{to{transform:translate3d(12%,-12%,0) rotate(13deg);border-radius:56% 44% 39% 61% / 59% 40% 60% 41%}}
+:root[data-theme="dark"] .fluid-scene{background:radial-gradient(ellipse at 29% 10%,#40559d,transparent 48%),linear-gradient(140deg,#131936,#333363 56%,#543f66)}
+:root[data-theme="dark"] .fluid-blob{opacity:.7}
+@media(prefers-color-scheme:dark){
+ :root:not([data-theme="light"]) .fluid-scene{background:radial-gradient(ellipse at 29% 10%,#40559d,transparent 48%),linear-gradient(140deg,#131936,#333363 56%,#543f66)}
+ :root:not([data-theme="light"]) .fluid-blob{opacity:.7}
+}
+/* Two real mobile screenshots: use native image ratio, no cropped content or duplicate notch. */
+.gallery.gallery-dual {
+ height:clamp(270px,38svh,350px);padding:18px 12px;
+ gap:clamp(13px,4vw,27px);margin-top:17px;margin-bottom:23px;
+ display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:900px;
+ background:radial-gradient(ellipse at 23% 17%,#96c9fd35,transparent 65%),radial-gradient(ellipse at 90% 83%,#edd1ed33,transparent 60%),#2b46652f;
+ border:1px solid #e5eeff2b;box-shadow:inset 0 1px 1px #ffffff38;
+}
+.gallery.gallery-dual .dual-phone,.panel-karoane .gallery.gallery-dual .dual-phone {
+ display:block;position:relative;flex:0 0 auto;
+ width:clamp(103px,15svh,134px);height:auto;margin:0;padding:0;
+ overflow:hidden;isolation:isolate;border-radius:20px;
+ border:2px solid #f1f4ffe8;background:#eef2fc;
+ box-shadow:0 0 0 1px #39496a6b,10px 14px 26px #071a3d67;
+ transform-origin:center center;
+}
+.gallery.gallery-dual .dual-phone-1,.panel-karoane .gallery.gallery-dual .dual-phone-1{transform:translateY(7px) rotate(-7deg)}
+.gallery.gallery-dual .dual-phone-2,.panel-karoane .gallery.gallery-dual .dual-phone-2{transform:translateY(-4px) rotate(7deg)}
+.gallery.gallery-dual .dual-phone img {
+ position:relative;display:block;width:100%;height:auto;max-height:none;
+ aspect-ratio:auto;object-fit:contain;object-position:top center;
+ border-radius:17px;margin:0;padding:0;
+}
+.gallery.gallery-dual .phone-pending{aspect-ratio:9/19.5;min-height:0}
+.theme-switch{width:44px;height:44px;padding:0;display:grid;place-items:center;border-radius:50%;background:#ffffffa6;border:1px solid #ffffffe0;color:#30436d;box-shadow:inset 0 1px 1px #fff,0 6px 20px #5366a04d}
+.theme-switch::before{display:none!important}
+.theme-switch svg{grid-area:1/1;transition:opacity .25s,transform .25s}
+.theme-switch .theme-moon{opacity:0;transform:rotate(-24deg) scale(.75)}
+.theme-switch .theme-sun{opacity:1;transform:none;color:#a87c39}
+:root[data-theme="dark"] .theme-switch{background:#263158b8;color:#f9faff}
+:root[data-theme="dark"] .theme-switch .theme-sun{opacity:0}
+:root[data-theme="dark"] .theme-switch .theme-moon{opacity:1;transform:none}
+@media(prefers-color-scheme:dark){
+ :root:not([data-theme="light"]) .theme-switch .theme-sun{opacity:0}
+ :root:not([data-theme="light"]) .theme-switch .theme-moon{opacity:1;transform:none}
+}
+@media(max-height:740px){.gallery.gallery-dual{height:clamp(245px,37svh,285px);padding:13px 10px}.gallery.gallery-dual .dual-phone{width:clamp(96px,14svh,116px)}}
+@media(prefers-reduced-motion:reduce){.fluid-blob,.fluid-scene::before{animation:none!important;will-change:auto}}

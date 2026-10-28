@@ -10,5 +10,5 @@ export const projects: Project[] = [
   { id: 'barbearia', name: 'Barbearia', screenshots: [], headline: 'Seu próximo corte, sem complicação.' },
   { id: 'vertice', name: 'Vértice', screenshots: [], headline: 'Seu espaço começa com uma ideia.' },
 ];
-export const profile = { name: 'Paloma', github: process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/palomagl', linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL, email: process.env.NEXT_PUBLIC_EMAIL };
+export const profile = { name: 'Paloma', github: process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/palomagl', linkedin: 'https://www.linkedin.com/in/palomagl', email: process.env.NEXT_PUBLIC_EMAIL };
 

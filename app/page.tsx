@@ -44,7 +44,8 @@ export default function Home() {
   }, [selected]);
 
   function changeTheme() {
-    const next = theme === 'system' ? 'light' : theme === 'light' ? 'dark' : 'system';
+    const active = theme === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme;
+    const next = active === 'light' ? 'dark' : 'light';
     setTheme(next);
     document.documentElement.dataset.theme = next;
     document.documentElement.style.colorScheme = next === 'system' ? 'light dark' : next;
@@ -70,11 +71,10 @@ export default function Home() {
         <header className="screen-header flex justify-end">
           <div className="site-brand"><h1>fora da tela<span>.</span></h1><p>Projetos que saem do papel.</p></div>
           <button className="theme-switch liquid-glass" onClick={changeTheme}
-            aria-label={`Tema: ${theme === 'system' ? 'sistema' : theme === 'light' ? 'claro' : 'escuro'}. Alternar tema`}
-            title="Tema: sistema → claro → escuro">
-            <span className="theme-sun"><Sun size={18} strokeWidth={1.6} /></span>
-            <span className="theme-moon"><Moon size={18} strokeWidth={1.6} /></span>
-            {theme === 'system' && <span className="system-indicator" />}
+            aria-label="Alternar tema claro e escuro"
+            title="Alternar tema">
+            <Sun className="theme-sun" size={20} strokeWidth={1.8} />
+            <Moon className="theme-moon" size={20} strokeWidth={1.8} />
           </button>
         </header>
 
@@ -142,7 +142,7 @@ export default function Home() {
             <div className="gallery gallery-dual" aria-label={`Prévia de ${selected.name} em celulares`}>
               {[0, 1].map((index) => (
                 <div className={`phone-preview dual-phone dual-phone-${index + 1}`} key={index}>
-                  <div className="phone-camera" aria-hidden="true" />
+                  
                   {selected.screenshots[index] ? (
                     <img src={selected.screenshots[index]} alt={`Captura real ${index + 1} de ${selected.name}`} width={390} height={844} />
                   ) : (
