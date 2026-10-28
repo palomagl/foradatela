@@ -166,3 +166,8 @@ html,body { background:#b6baf1; }
 .gallery-dual .phone-pending{flex:1;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#64748b;font-size:12px;text-align:center;padding:10px;background:linear-gradient(155deg,#f9fbff,#dde6f2);}
 .gallery-dual .phone-pending small{font-size:10px;}
 @media(max-width:359px){.gallery.gallery-dual{gap:10px;padding:18px 10px}.gallery-dual .dual-phone{width:38%;}}
+
+/* Extra breathing room below the two real screenshot mockups. */
+.gallery.gallery-dual{margin-bottom:22px;}
+.gallery.gallery-dual + .cta{margin-top:12px;}
+.panel .project-description{margin-bottom:20px;}
