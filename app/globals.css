@@ -279,3 +279,88 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 }
 @media(max-height:740px){.gallery.gallery-dual{height:clamp(245px,37svh,285px);padding:13px 10px}.gallery.gallery-dual .dual-phone{width:clamp(96px,14svh,116px)}}
 @media(prefers-reduced-motion:reduce){.fluid-blob,.fluid-scene::before{animation:none!important;will-change:auto}}
+
+
+/* Final responsive preview treatment: the screenshot is the screen.
+   No extra black phone shell, notch, forced crop, blur or heavy border. */
+.gallery.gallery-dual {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(244px, 37svh, 328px);
+  gap: clamp(12px, 3.5vw, 22px);
+  padding: 12px 10px;
+  margin: 17px 0 23px;
+  overflow: hidden;
+  border-radius: 21px;
+  perspective: none;
+  background:
+    radial-gradient(ellipse at 15% 18%, rgb(133 181 239 / 25%), transparent 66%),
+    radial-gradient(ellipse at 84% 89%, rgb(248 204 220 / 19%), transparent 64%),
+    rgb(17 36 59 / 22%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  box-shadow: inset 0 1px rgb(255 255 255 / 14%);
+}
+.gallery.gallery-dual .dual-phone,
+.panel-karoane .gallery.gallery-dual .dual-phone {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(86px, 13.4svh, 118px);
+  height: auto;
+  min-height: 0;
+  max-width: 39%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgb(242 247 255 / 75%);
+  outline: none;
+  background: transparent;
+  isolation: isolate;
+  box-shadow:
+    0 0 0 .5px rgb(28 49 77 / 22%),
+    5px 10px 17px rgb(8 19 37 / 21%);
+  transform-origin: center;
+}
+.gallery.gallery-dual .dual-phone-1,
+.panel-karoane .gallery.gallery-dual .dual-phone-1 {
+  transform: translateY(5px) rotate(-6deg);
+}
+.gallery.gallery-dual .dual-phone-2,
+.panel-karoane .gallery.gallery-dual .dual-phone-2 {
+  transform: translateY(-3px) rotate(6deg);
+}
+.gallery.gallery-dual .dual-phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 15px;
+  object-fit: contain;
+  object-position: top center;
+  filter: none;
+  -webkit-filter: none;
+}
+.gallery.gallery-dual .phone-camera { display: none !important; }
+.gallery.gallery-dual .phone-pending {
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 9 / 19.5;
+  border-radius: 15px;
+}
+@media (max-height: 730px) {
+  .gallery.gallery-dual { height: clamp(224px, 34svh, 269px); padding: 9px; }
+  .gallery.gallery-dual .dual-phone { width: clamp(80px, 12.7svh, 107px); }
+}
+@media (max-width: 350px) {
+  .gallery.gallery-dual { gap: 9px; padding-inline: 7px; }
+  .gallery.gallery-dual .dual-phone { width: min(38%, 102px); }
+}
