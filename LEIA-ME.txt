@@ -1,0 +1,5 @@
+Imagens originais das telas recebidas nesta conversa, recortadas para entrar dentro dos celulares 3D (evita moldura duplicada). Algumas regiões com conteúdo pessoal foram desfocadas.
+
+Envie todos os arquivos da pasta public/projects para o mesmo caminho no repositório GitHub; substitua os arquivos com nomes iguais. Depois configure os caminhos de screenshots em lib/projects.ts conforme SCREENSHOTS.json.
+
+AVISO: Nao publique screenshots nao tratadas com dados pessoais/financeiros/saude.
