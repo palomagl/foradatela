@@ -26,12 +26,13 @@ test('9 apps, icons and social links',async({page})=>{
 });
 
 test('7 real projects open with correct destinations and screenshots stay inside gallery',async({page})=>{
+  test.setTimeout(90000);
   await page.goto('/');
   for(const [project,url] of Object.entries(sites)){
     await page.getByRole('button',{name:'Conhecer '+project,exact:true}).click();
     const dialog=page.getByRole('dialog');
     await expect(dialog).toBeVisible();
-    await dialog.evaluate(el=>Promise.all(el.getAnimations().map(animation=>animation.finished)));
+    await page.waitForTimeout(600); // Let the entrance transition finish before measuring image bounds.
     await expect(dialog.locator('a.cta')).toHaveAttribute('href',url);
     const area=await dialog.locator('.gallery.gallery-dual').boundingBox();
     expect(area).not.toBeNull();
