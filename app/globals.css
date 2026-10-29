@@ -608,3 +608,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
    animation:none!important;opacity:1!important;transform:none!important;
  }
 }
+
+/* Progressive portfolio: the ninth icon opens future projects without changing the launcher. */
+.more-projects .project-name{font-size:11px;line-height:1.18;max-width:96px;margin-inline:auto;text-wrap:balance;}
+.more-projects .app-icon svg{transition:transform .25s ease;}
+.more-projects .more-icon-open{transform:rotate(45deg);}
+.extra-projects{width:100%;margin-top:12px;animation:extra-projects-in .25s ease both;}
+@keyframes extra-projects-in{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.extra-projects{animation:none}}
