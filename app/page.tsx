@@ -23,6 +23,7 @@ type Theme = 'system' | 'light' | 'dark';
 export default function Home() {
   const [theme, setTheme] = useState<Theme>('system');
   const [selected, setSelected] = useState<Project | null>(null);
+  const [showMoreProjects, setShowMoreProjects] = useState(false);
   const [expandedScreenshot, setExpandedScreenshot] = useState<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
@@ -80,7 +81,7 @@ export default function Home() {
         </header>
 
         <section id="projects" className="project-grid grid grid-cols-3" aria-label="Projetos">
-          {projects.map((project) => (
+          {projects.slice(0, 8).map((project) => (
             <button className="project" key={project.id} aria-label={`Conhecer ${project.name}`}
               onClick={(event) => { trigger.current = event.currentTarget; setExpandedScreenshot(null); setSelected(project); }}>
               <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
@@ -91,7 +92,27 @@ export default function Home() {
               <span className="project-name">{project.name}</span>
             </button>
           ))}
+          <button className="project more-projects" aria-expanded={showMoreProjects} aria-controls="additional-projects"
+            onClick={() => setShowMoreProjects(value => !value)}>
+            <span className="app-icon empty-icon liquid-glass">
+              <Plus size={28} strokeWidth={1.2} className={showMoreProjects ? 'more-icon-open' : ''} />
+            </span>
+            <span className="project-name">{showMoreProjects ? 'Ver menos' : 'Ver mais projetos'}</span>
+          </button>
         </section>
+        {showMoreProjects && (
+          <section id="additional-projects" className="project-grid grid grid-cols-3 extra-projects" aria-label="Mais projetos">
+            {projects.slice(8).map((project) => (
+              <button className="project" key={project.id} aria-label={`Conhecer ${project.name}`}
+                onClick={(event) => { trigger.current = event.currentTarget; setExpandedScreenshot(null); setSelected(project); }}>
+                <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
+                  {project.icon ? <img src={project.icon} alt="" width={96} height={96} draggable={false} /> : <Plus size={28} strokeWidth={1} />}
+                </span>
+                <span className="project-name">{project.name}</span>
+              </button>
+            ))}
+          </section>
+        )}
 
         <footer className="screen-footer">
           <nav className="dock liquid-glass flex items-center justify-around" aria-label="Redes e contato">
