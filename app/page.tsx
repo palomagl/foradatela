@@ -23,6 +23,7 @@ type Theme = 'system' | 'light' | 'dark';
 export default function Home() {
   const [theme, setTheme] = useState<Theme>('system');
   const [selected, setSelected] = useState<Project | null>(null);
+  const [expandedScreenshot, setExpandedScreenshot] = useState<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
 
@@ -53,6 +54,7 @@ export default function Home() {
 
   function close() {
     dialog.current?.close();
+    setExpandedScreenshot(null);
     setSelected(null);
     trigger.current?.focus();
   }
@@ -80,7 +82,7 @@ export default function Home() {
         <section id="projects" className="project-grid grid grid-cols-3" aria-label="Projetos">
           {projects.map((project) => (
             <button className="project" key={project.id} aria-label={`Conhecer ${project.name}`}
-              onClick={(event) => { trigger.current = event.currentTarget; setSelected(project); }}>
+              onClick={(event) => { trigger.current = event.currentTarget; setExpandedScreenshot(null); setSelected(project); }}>
               <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
                 {project.icon
                   ? <img src={project.icon} alt="" width={96} height={96} draggable={false} />
@@ -105,7 +107,7 @@ export default function Home() {
       </div>
 
       <dialog ref={dialog} className="project-dialog liquid-glass" aria-labelledby="project-title"
-        onCancel={(event) => { event.preventDefault(); close(); }}
+        onCancel={(event) => { event.preventDefault(); if (expandedScreenshot !== null) setExpandedScreenshot(null); else close(); }}
         onClick={(event) => {
           if (event.target !== dialog.current) return;
           const rect = dialog.current.getBoundingClientRect();
@@ -115,6 +117,7 @@ export default function Home() {
           <article className={`panel panel-${selected.id}`}>
             <div className="handle" aria-hidden="true" />
             <button className="close" onClick={close} aria-label="Fechar projeto"><X size={23} strokeWidth={1.6} /></button>
+            <div className="panel-scroll">
             <div className="panel-heading flex items-center">
               {selected.icon && <img className="panel-icon" src={selected.icon} alt="" width={80} height={80} />}
               <div><h2 id="project-title">{selected.name}</h2><p>{details[selected.id]?.subtitle}</p></div>
@@ -138,25 +141,51 @@ export default function Home() {
               </div>
             )}
 
-            <div className="gallery gallery-dual" aria-label={`Prévia de ${selected.name} em celulares`}>
-              {[0, 1].map((index) => (
+            <div className="gallery gallery-dual" aria-label={`Telas de ${selected.name}`}>
+              {[0, 1].map((index) => selected.screenshots[index] ? (
+                <button type="button" className={`phone-preview dual-phone dual-phone-${index + 1}`}
+                  key={index} onClick={() => setExpandedScreenshot(index)}
+                  aria-label={`Ampliar tela ${index + 1} de ${selected.name}`}>
+                  <img src={selected.screenshots[index]}
+                    alt={`Captura real ${index + 1} de ${selected.name}`}
+                    width={390} height={844} decoding="async" />
+                </button>
+              ) : (
                 <div className={`phone-preview dual-phone dual-phone-${index + 1}`} key={index}>
-                  
-                  {selected.screenshots[index] ? (
-                    <img src={selected.screenshots[index]} alt={`Captura real ${index + 1} de ${selected.name}`} width={390} height={844} />
-                  ) : (
-                    <div className="phone-pending"><span>Prévia</span><small>aguardando captura real</small></div>
-                  )}
+                  <div className="phone-pending"><span>Em breve</span><small>Prévia em preparação</small></div>
                 </div>
               ))}
             </div>
-
+            {selected.screenshots.length > 0 && (
+              <p className="gallery-hint">Toque nas telas para ampliar</p>
+            )}
+            </div>
+            <div className="panel-actions">
             {selected.url ? (
               <a className="cta flex items-center justify-center" href={selected.url} target="_blank" rel="noopener noreferrer">
                 {selected.id === 'stopou' ? 'Jogar agora' : selected.id === 'karoane' ? 'Explorar loja' : 'Explorar projeto'}
                 <ArrowUpRight size={20} />
               </a>
-            ) : <div className="unavailable">Link disponível em breve</div>}
+            ) : <div className="unavailable">Projeto em preparação</div>}
+            </div>
+            {expandedScreenshot !== null && selected.screenshots[expandedScreenshot] && (
+              <div className="screenshot-lightbox" role="region" aria-label={`Tela ampliada de ${selected.name}`}>
+                <div className="screenshot-lightbox-header">
+                  <span>{selected.name} · Tela {expandedScreenshot + 1}</span>
+                  <button type="button" onClick={() => setExpandedScreenshot(null)}
+                    aria-label="Fechar imagem ampliada"><X size={22} /></button>
+                </div>
+                <img src={selected.screenshots[expandedScreenshot]}
+                  alt={`Tela ampliada de ${selected.name}`} />
+                <div className="screenshot-lightbox-tabs">
+                  {selected.screenshots.map((_, index) => (
+                    <button type="button" key={index}
+                      aria-pressed={expandedScreenshot === index}
+                      onClick={() => setExpandedScreenshot(index)}>Tela {index + 1}</button>
+                  ))}
+                </div>
+              </div>
+            )}
           </article>
         )}
       </dialog>
