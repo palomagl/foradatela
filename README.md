@@ -1,58 +1,74 @@
-# Fora da Tela
+<div align="center">
 
-Next.js + TypeScript + Tailwind CSS, preparado para Vercel.
+# fora da tela<span>.</span>
 
-## Rodar
+### Não é só um portfólio. É um lugar para abrir ideias.
 
-```sh
+Um pequeno universo de experiências digitais, jogos e produtos que ganharam vida fora do código.
+
+**[✦ Entrar no Fora da Tela](https://foradatela.vercel.app/)**
+
+</div>
+
+---
+
+<table>
+<tr>
+<td width="53%" valign="middle">
+
+### Um toque. Outro mundo.
+
+Em vez de uma lista de repositórios, uma tela inicial que parece um launcher: ícones próprios, projetos que se abrem como aplicativos, detalhes em vidro translúcido e acesso direto a cada experiência.
+
+Cada projeto tem algo para descobrir. Alguns são jogos. Outros resolvem problemas reais do dia a dia.
+
+O melhor jeito de conhecer é **abrir e experimentar**.
+
+**[Explorar os projetos →](https://foradatela.vercel.app/)**
+
+</td>
+<td width="47%" align="center">
+
+<img src="public/readme/stopou-real-preview.webp" alt="Captura real do painel do jogo Stopou! aberto no Fora da Tela, com dois celulares e um botão para jogar" width="360" />
+
+<sub>Detalhe real da experiência: Stopou! aberto no Fora da Tela.</sub>
+
+</td>
+</tr>
+</table>
+
+## O que existe aqui?
+
+**Projetos para usar, não apenas observar.** Um jogo de Stop multiplayer em que os amigos entram por código; um aplicativo que estima calorias pela foto do prato e acompanha a hidratação; uma rotina que registra despesas pelo Telegram; uma plataforma de doação de sangue com pontos de coleta próximos; experiências de e-commerce, delivery e controle financeiro, inclusive compartilhado com a família.
+
+O portfólio foi pensado para que cada produto conte sua própria história, com **identidade, telas reais e um caminho direto para experimentar**.
+
+## Uma vitrine que também é um produto
+
+A interface é parte da experiência: Liquid Glass, animações discretas, navegação responsiva, abertura dos projetos em painéis e modo claro/escuro. O fundo tem uma versão em WebGL, com alternativa para navegadores sem suporte e respeito à preferência por movimento reduzido.
+
+O espaço **“Ver mais projetos”** deixa a coleção crescer sem transformar a página inicial em uma lista interminável.
+
+<div align="center">
+
+### Tem mais vindo por aí.
+
+**[Conheça o Fora da Tela](https://foradatela.vercel.app/)** · **[GitHub](https://github.com/palomagl)** · **[LinkedIn](https://www.linkedin.com/in/palomagl)**
+
+<sub>Projeto independente de Paloma · feito para apresentar o que construo de uma forma que também merece ser explorada.</sub>
+
+</div>
+
+<details>
+<summary>Para quem quer explorar o código</summary>
+
+O site usa Next.js, TypeScript e CSS, com WebGL para o cenário visual. Os projetos, links e caminhos das imagens ficam em `lib/projects.ts`.
+
+```bash
 npm ci
 npm run dev
 ```
 
-Abra o endereço Local mostrado no terminal. Requer Node.js 20.9 ou superior.
+Para verificar a entrega: `npm run build`, `npm run typecheck`, `npm run verify` e `npm test`. Os testes de navegador são executados pelo workflow do GitHub Actions.
 
-```sh
-npm run typecheck
-npm run build
-npm test
-```
-
-Os testes usam Microsoft Edge instalado no Windows. Para outro sistema, remova `channel: 'msedge'` de `playwright.config.ts` e instale o Chromium com `npx playwright install chromium`. O build utiliza Webpack por compatibilidade com o ambiente Windows desta entrega.
-
-## Experiência
-
-- Terra em tela inteira, com horizonte iluminado, aplicativos na metade inferior e dock de vidro, seguindo a referência fornecida.
-- Compositor WebGL/GLSL próprio: paralaxe em profundidade ao toque/mouse, deslocamento orbital suave, luzes pulsantes e bloom no nascer do Sol. O efeito usa uma imagem como base; é uma composição 2.5D, não um globo 3D com rotação geográfica completa.
-- Limite de 30 fps, densidade de pixels limitada a 1,5, pausa em abas ocultas e preferência por movimento reduzido.
-- Fundo local estático preservado quando WebGL não estiver disponível.
-- Painéis de vidro, transição de abertura, captura real em moldura de celular e botões com os links dos projetos.
-- Tema automático pelo sistema, com alternância sistema → claro → escuro. Ambos preservam o cenário espacial; o tema altera a iluminação e as superfícies de vidro. A escolha persiste no navegador.
-- Painéis com foco preso pelo dialog nativo, fechamento por Escape e retorno do foco ao aplicativo.
-
-## Configuração
-
-- `lib/projects.ts`: projetos, URLs, ícones e caminhos das prévias.
-- `public/projects/`: sete ícones recortados do print original, sem recriar as identidades.
-- Barbearia e Vértice: espaços neutros até receber os ícones originais.
-- URLs configuradas: Stopou!, DOE+ RS, Minha Rotina, Minhas Finanças, Karoane e Bruto.
-- Rítimo, Barbearia e Vértice aguardam URLs.
-- `.env.example`: copiar para `.env.local` e preencher GitHub, LinkedIn e e-mail. Contatos sem configuração ficam desativados.
-
-## Imagens
-
-`public/earth-orbit.webp` é um cenário decorativo gerado para acompanhar a referência visual da usuária. As prévias dos projetos são capturas reais das seis páginas públicas fornecidas, obtidas em 28/10/2026. Minha Rotina e DOE+ RS mostram as respectivas páginas de login, sem autenticação nem dados pessoais. Minhas Finanças mostra a tela inicial apresentada publicamente durante a captura. Nenhuma tela de projeto foi gerada por IA.
-
-A galeria aceita várias capturas: adicione seus caminhos em `screenshots` e deslize para navegar. Os indicadores são criados apenas para as imagens existentes.
-
-## Vercel
-
-Importe esta pasta como um projeto Next.js. Comando de build: `npm run build`. Configure as variáveis de `.env.example` antes do build. Não há banco de dados nem serviço externo obrigatório.
-
-## Verificação desta revisão
-
-O build limpo de produção, a verificação TypeScript e `npm run verify` passaram. A verificação automatizada confere o HTML de produção, nove projetos, bundles, sete ícones, seis prévias e preferências de tema. A execução dos testes Playwright nesta máquina ficou bloqueada na abertura do Microsoft Edge pelo ambiente de execução; não houve resultado de aprovação dos testes de navegador desta revisão. O workflow do GitHub Actions executa a compilação e a suíte com Chromium no Linux a cada push em main.
-
-## Testes sem servidor local
-
-Para testar o HTML e os bundles reais de produção sem abrir uma porta local, defina PLAYWRIGHT_OFFLINE=1 antes de executar npm test, após npm run build. Nesse modo, a fixture apenas entrega os arquivos locais ao navegador; as interações React, os diálogos e a renderização continuam reais. Nenhum site externo é acessado pelos testes.
-
+</details>
