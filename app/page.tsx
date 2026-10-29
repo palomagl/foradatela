@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Mail, Moon, Sun, X, Plus } from 'lucide-react';
+import { ArrowUpRight, Mail, Moon, Sun, X, Plus, Bot } from 'lucide-react';
 import { Github, Linkedin } from '@/components/social-icons';
 import { projects, profile, type Project } from '@/lib/projects';
 import { LiquidGlassScene } from '@/components/liquid-glass-scene';
@@ -134,7 +134,7 @@ export default function Home() {
                     <span className="telegram-check" aria-label="Mensagem enviada">✓✓</span>
                   </div>
                   <div className="telegram-bot-message">
-                    <span className="telegram-bot-icon" aria-hidden="true">✦</span>
+                    <span className="telegram-bot-icon" aria-hidden="true"><Bot size={19} strokeWidth={2} /></span>
                     <span>Conta adicionada no app <span aria-hidden="true">✓</span></span>
                   </div>
                   <div className="telegram-entry">
