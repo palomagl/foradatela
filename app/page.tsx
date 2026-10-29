@@ -8,10 +8,10 @@ import { LiquidGlassScene } from '@/components/liquid-glass-scene';
 
 const details: Record<string, { subtitle: string; description: string }> = {
   stopou: { subtitle: 'Jogo de palavras · Multiplayer', description: 'Crie uma sala, compartilhe o código com seus amigos e joguem Stop juntos, cada um do seu celular.' },
-  ritimo: { subtitle: 'Alimentação · IA', description: 'Tirou foto do prato? A inteligência artificial estima as calorias da refeição e te ajuda a acompanhar a alimentação de forma prática.' },
+  ritimo: { subtitle: 'Alimentação · IA · Hidratação', description: 'Tire uma foto do prato para estimar as calorias com IA. Acompanhe também sua água ao longo do dia: o Ritmo usa seu peso para calcular uma meta diária e mostrar quanto ainda falta beber.' },
   rotina: { subtitle: 'Organização · Telegram', description: 'Anote seus gastos enviando uma mensagem ao bot no Telegram. Eles entram no aplicativo, junto com suas tarefas, hábitos e metas.' },
   karoane: { subtitle: 'E-commerce · Papelaria e bazar', description: 'Uma loja virtual com catálogo para clientes e painel para cadastrar produtos, administrar a vitrine e receber pedidos de orçamento de empresas.' },
-  financas: { subtitle: 'Finanças pessoais', description: 'Um jeito simples e intuitivo de organizar o dinheiro, registrar movimentações e acompanhar suas finanças sem complicação.' },
+  financas: { subtitle: 'Finanças pessoais · Família', description: 'Registre compras, acompanhe seu saldo e compartilhe gastos em família em tempo real, de forma simples.' },
   doe: { subtitle: 'Doação de sangue · RS', description: 'Encontre pontos de coleta próximos, acompanhe suas doações e tenha sua carteirinha de doador em um só lugar.' },
   bruto: { subtitle: 'Hamburgueria · Demonstração', description: 'Uma experiência digital de hamburgueria: explore o cardápio, escolha produtos e conheça o fluxo de pedidos. Demonstração sem venda real.' },
   barbearia: { subtitle: 'Agendamento de serviços', description: 'Uma experiência de agendamento para conhecer serviços e escolher horários em uma barbearia. Projeto em preparação.' },
