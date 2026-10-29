@@ -56,7 +56,7 @@ test('unpublished apps have no dead external links',async({page})=>{
   await page.goto('/');
   for(const project of ['Barbearia','Vértice']){
     await page.getByRole('button',{name:'Conhecer '+project}).click();
-    await expect(page.getByRole('dialog')).toContainText('Link disponível em breve');
+    await expect(page.getByRole('dialog')).toContainText('Projeto em preparação');
     await expect(page.getByRole('dialog').locator('a.cta')).toHaveCount(0);
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).not.toBeVisible();
