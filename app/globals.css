@@ -529,3 +529,82 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 }
 .panel-stopou .panel-scroll,.panel-ritimo .panel-scroll{padding-bottom:12px}
 .panel-stopou .project-description,.panel-ritimo .project-description{margin-bottom:9px}
+
+
+/* Minha Rotina — chat demonstration plays once each time its sheet opens. */
+.panel-rotina .telegram-flow{
+  margin:14px 0 19px;
+  padding:14px 13px 15px;
+  border-radius:20px;
+  border:1px solid rgb(255 255 255 / 34%);
+  background:linear-gradient(145deg,rgb(217 231 255 / 16%),rgb(109 110 191 / 14%));
+}
+.panel-rotina .telegram-example-label{margin-bottom:14px;letter-spacing:.16em;}
+.panel-rotina .telegram-chat{display:flex;flex-direction:column;gap:11px;overflow:hidden;padding:3px 2px 6px;}
+.panel-rotina .telegram-message{
+  align-self:flex-end;
+  max-width:90%;
+  margin:0 1px 0 24px;
+  display:flex;align-items:flex-end;gap:10px;
+  border-radius:17px 17px 5px 17px;
+  padding:12px 13px;
+  font-size:13px;line-height:1.4;
+  color:#22324b;background:#d9f0ff;
+  box-shadow:0 5px 14px rgb(9 26 63 / 19%);
+  opacity:0;transform:translate3d(27px,12px,0) scale(.94);
+  animation:telegram-arrive-right .48s cubic-bezier(.2,1.2,.3,1) .35s forwards;
+}
+.panel-rotina .telegram-check{align-self:flex-end;font-size:12px;color:#1598ce;margin:0;}
+.panel-rotina .telegram-bot-message{
+  align-self:flex-start;display:flex;align-items:center;gap:9px;
+  max-width:93%;padding:11px 12px;
+  border-radius:17px 17px 17px 5px;
+  color:#fff;font-size:12.5px;line-height:1.4;
+  background:rgb(255 255 255 / 19%);
+  border:1px solid rgb(255 255 255 / 26%);
+  box-shadow:0 5px 14px rgb(12 23 53 / 14%);
+  opacity:0;transform:translate3d(-24px,8px,0) scale(.94);
+  animation:telegram-arrive-left .48s cubic-bezier(.2,1.2,.3,1) 1.35s forwards;
+}
+.panel-rotina .telegram-bot-icon{
+  display:grid;place-items:center;flex:0 0 auto;
+  width:29px;height:29px;border-radius:10px;
+  background:linear-gradient(135deg,#a893ff,#6851df);
+  box-shadow:0 4px 10px rgb(87 64 193 / 26%);
+  font-size:18px;
+}
+.panel-rotina .telegram-entry{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 12px;
+  border-radius:15px;
+  background:rgb(250 252 255 / 93%);
+  color:#24334b;
+  box-shadow:0 7px 17px rgb(9 22 48 / 19%);
+  opacity:0;transform:translate3d(0,13px,0) scale(.96);
+  animation:telegram-entry-appear .46s cubic-bezier(.2,1.2,.3,1) 2.22s forwards;
+}
+.panel-rotina .telegram-entry-icon{display:grid;place-items:center;width:35px;height:35px;border-radius:11px;background:#ffe5e6;font-size:17px;flex-shrink:0;}
+.panel-rotina .telegram-entry-info{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.panel-rotina .telegram-entry-info strong{font-size:12px;font-weight:700;}
+.panel-rotina .telegram-entry-info small{font-size:10px;color:#6f8098;}
+.panel-rotina .telegram-entry-value{font-size:12px;font-weight:750;white-space:nowrap;margin-left:auto;color:#da6275;}
+@keyframes telegram-arrive-right{
+  0%{opacity:0;transform:translate3d(27px,12px,0) scale(.94)}
+  68%{opacity:1;transform:translate3d(-3px,0,0) scale(1.018)}
+  100%{opacity:1;transform:none}
+}
+@keyframes telegram-arrive-left{
+  0%{opacity:0;transform:translate3d(-24px,8px,0) scale(.94)}
+  68%{opacity:1;transform:translate3d(3px,0,0) scale(1.018)}
+  100%{opacity:1;transform:none}
+}
+@keyframes telegram-entry-appear{
+  0%{opacity:0;transform:translate3d(0,13px,0) scale(.96)}
+  75%{opacity:1;transform:translate3d(0,-2px,0) scale(1.01)}
+  100%{opacity:1;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .panel-rotina .telegram-message,.panel-rotina .telegram-bot-message,.panel-rotina .telegram-entry{
+   animation:none!important;opacity:1!important;transform:none!important;
+ }
+}
