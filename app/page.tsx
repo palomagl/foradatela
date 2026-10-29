@@ -7,12 +7,12 @@ import { projects, profile, type Project } from '@/lib/projects';
 import { LiquidGlassScene } from '@/components/liquid-glass-scene';
 
 const details: Record<string, { subtitle: string; description: string }> = {
-  stopou: { subtitle: 'Jogo de palavras · Multiplayer', description: 'Crie uma sala, compartilhe o código com seus amigos e joguem Stop juntos, cada um do seu celular.' },
-  ritimo: { subtitle: 'Alimentação · IA · Hidratação', description: 'Tire uma foto do prato para estimar as calorias com IA. Acompanhe também sua água ao longo do dia: o Ritmo usa seu peso para calcular uma meta diária e mostrar quanto ainda falta beber.' },
-  rotina: { subtitle: 'Organização · Telegram', description: 'Anote seus gastos enviando uma mensagem ao bot no Telegram. Eles entram no aplicativo, junto com suas tarefas, hábitos e metas.' },
+  stopou: { subtitle: 'Jogo de palavras · Multiplayer', description: 'Crie uma sala, envie o código aos amigos e joguem Stop em tempo real, cada um no seu celular.' },
+  ritimo: { subtitle: 'Alimentação · IA · Hidratação', description: 'Fotografe suas refeições para estimar calorias com IA. Acompanhe a água consumida e sua meta diária, calculada pelo peso.' },
+  rotina: { subtitle: 'Organização · Telegram', description: 'Envie seus gastos pelo Telegram e veja tudo no aplicativo. Organize também tarefas, hábitos e metas em um só lugar.' },
   karoane: { subtitle: 'E-commerce · Papelaria e bazar', description: 'Uma loja virtual com catálogo para clientes e painel para cadastrar produtos, administrar a vitrine e receber pedidos de orçamento de empresas.' },
-  financas: { subtitle: 'Finanças pessoais · Família', description: 'Registre compras, acompanhe seu saldo e compartilhe gastos em família em tempo real, de forma simples.' },
-  doe: { subtitle: 'Doação de sangue · RS', description: 'Encontre pontos de coleta próximos, acompanhe suas doações e tenha sua carteirinha de doador em um só lugar.' },
+  financas: { subtitle: 'Finanças pessoais · Família', description: 'Registre suas despesas, acompanhe o saldo e compartilhe os gastos da família em tempo real. Tudo de forma simples.' },
+  doe: { subtitle: 'Doação de sangue · RS', description: 'Descubra os hemocentros mais próximos, acompanhe suas doações e leve sua carteirinha de doador sempre com você.' },
   bruto: { subtitle: 'Hamburgueria · Demonstração', description: 'Uma experiência digital de hamburgueria: explore o cardápio, escolha produtos e conheça o fluxo de pedidos. Demonstração sem venda real.' },
   barbearia: { subtitle: 'Agendamento de serviços', description: 'Uma experiência de agendamento para conhecer serviços e escolher horários em uma barbearia. Projeto em preparação.' },
   vertice: { subtitle: 'Marmoraria · Projeto 3D', description: 'Uma vitrine digital para visualizar projetos de marmoraria e explorar opções de orçamento. Projeto em preparação.' },
