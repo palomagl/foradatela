@@ -616,3 +616,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 .extra-projects{width:100%;margin-top:12px;animation:extra-projects-in .25s ease both;}
 @keyframes extra-projects-in{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.extra-projects{animation:none}}
+
+
+/* Improve visibility of the pale mint finance showcase without altering the original asset. */
+.panel-financas .project-showcase img {
+  filter: brightness(.94) contrast(1.16) saturate(1.18) !important;
+  -webkit-filter: brightness(.94) contrast(1.16) saturate(1.18) !important;
+}
+/* All project descriptions use the same editorial measure, not forced line breaks. */
+.panel .project-description {
+  max-width:37ch;
+  line-height:1.55;
+  text-wrap:pretty;
+}
