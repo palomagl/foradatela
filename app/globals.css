@@ -620,8 +620,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 
 /* Improve visibility of the pale mint finance showcase without altering the original asset. */
 .panel-financas .project-showcase img {
-  filter: brightness(.94) contrast(1.16) saturate(1.18) !important;
-  -webkit-filter: brightness(.94) contrast(1.16) saturate(1.18) !important;
+  filter: brightness(.87) contrast(1.23) saturate(1.14) !important;
+  -webkit-filter: brightness(.87) contrast(1.23) saturate(1.14) !important;
 }
 /* Natural paragraphs: occupy the full sheet width with normal line wrapping. */
 .panel .project-description {
