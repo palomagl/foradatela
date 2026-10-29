@@ -34,7 +34,7 @@ test('7 real projects open with correct destinations and screenshots stay inside
     await expect(dialog).toBeVisible();
     await page.waitForTimeout(600); // Let the entrance transition finish before measuring image bounds.
     await expect(dialog.locator('a.cta')).toHaveAttribute('href',url);
-    if(project==='Stopou!' || project==='Ritmo'){
+    if(['Stopou!','Ritmo','Minha Rotina','Karoane','Minhas Finanças','DOE+ RS','Bruto'].includes(project)){
       const presentation=dialog.locator('.project-showcase img');
       await expect(presentation).toBeVisible();
       expect(await presentation.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
