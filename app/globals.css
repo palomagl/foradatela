@@ -623,9 +623,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
   filter: brightness(.94) contrast(1.16) saturate(1.18) !important;
   -webkit-filter: brightness(.94) contrast(1.16) saturate(1.18) !important;
 }
-/* All project descriptions use the same editorial measure, not forced line breaks. */
+/* Natural paragraphs: occupy the full sheet width with normal line wrapping. */
 .panel .project-description {
-  max-width:37ch;
+  width:100%;
+  max-width:none;
+  text-align:left;
+  text-wrap:wrap;
   line-height:1.55;
-  text-wrap:pretty;
+  hyphens:none;
 }
