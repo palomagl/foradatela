@@ -126,17 +126,22 @@ export default function Home() {
             {details[selected.id]?.description && <p className="project-description">{details[selected.id].description}</p>}
 
             {selected.id === 'rotina' && (
-              <div className="telegram-flow" aria-label="Exemplo ilustrativo do registro de gastos pelo Telegram">
-                <div className="telegram-example-label">COMO FUNCIONA · EXEMPLO</div>
-                <div className="telegram-message">
-                  <span className="telegram-mark" aria-hidden="true">➤</span>
-                  <span>Gastei R$ 35 no mercado</span>
-                  <span className="telegram-check" aria-hidden="true">✓✓</span>
-                </div>
-                <div className="telegram-result">
-                  <span aria-hidden="true" className="telegram-sync">↓</span>
-                  <span><strong>Gasto registrado</strong><small>Sincronizado com Minha Rotina</small></span>
-                  <span className="telegram-done" aria-hidden="true">✓</span>
+              <div className="telegram-flow" aria-label="Demonstração animada: mensagem enviada no Telegram, resposta do bot e gasto registrado no Minha Rotina">
+                <div className="telegram-example-label">ASSIM FUNCIONA</div>
+                <div className="telegram-chat">
+                  <div className="telegram-message">
+                    <span>Gastei R$ 35 no mercado</span>
+                    <span className="telegram-check" aria-label="Mensagem enviada">✓✓</span>
+                  </div>
+                  <div className="telegram-bot-message">
+                    <span className="telegram-bot-icon" aria-hidden="true">✦</span>
+                    <span>Conta adicionada no app <span aria-hidden="true">✓</span></span>
+                  </div>
+                  <div className="telegram-entry">
+                    <span className="telegram-entry-icon" aria-hidden="true">🛒</span>
+                    <span className="telegram-entry-info"><strong>Mercado</strong><small>Despesa registrada</small></span>
+                    <strong className="telegram-entry-value">− R$ 35,00</strong>
+                  </div>
                 </div>
               </div>
             )}
