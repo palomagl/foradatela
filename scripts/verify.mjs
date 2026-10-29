@@ -4,7 +4,8 @@ import vm from 'node:vm';
 
 const html=fs.readFileSync('.next/server/app/index.html','utf8');
 assert.match(html,/fora da tela/i);
-assert.equal((html.match(/aria-label="Conhecer /g)||[]).length,9);
+assert.equal((html.match(/aria-label="Conhecer /g)||[]).length,8);
+assert.match(html,/Ver mais projetos/);
 for(const asset of html.matchAll(/(?:src|href)="(\/(?:_next\/static|projects)\/[^"?]+)(?:\?[^" ]*)?"/g)){
   const local=asset[1].startsWith('/_next/')?'.next/'+asset[1].slice('/_next/'.length):'public'+asset[1];
   assert.ok(fs.existsSync(local),'Missing asset: '+local);
@@ -14,7 +15,7 @@ for(const slug of slugs){
   const icon=fs.readFileSync('public/projects/'+slug+'.png');
   assert.equal(icon.subarray(1,4).toString(),'PNG');
   for(const n of ['01','02']){
-    const file='public/projects/'+slug+'/screen-'+n+(slug==='rotina'||(slug==='financas'&&n==='02')?'.webp':'.png');
+    const file='public/projects/'+slug+'/screen-'+n+(slug==='rotina'?'.webp':'.png');
     assert.ok(fs.existsSync(file),file);
     const content=fs.readFileSync(file);
     assert.ok(content.length>1000,file+' should contain an image');
@@ -34,4 +35,4 @@ for(const saved of [null,'dark','light']){
 }
 assert.ok(fs.readFileSync('components/liquid-glass-scene.tsx','utf8').includes('webgl'));
 assert.ok(fs.readFileSync('lib/projects.ts','utf8').includes('https://www.linkedin.com/in/palomagl'));
-console.log('OK: 9 projects, 7 icons, 14 screenshots, theme, glass renderer and LinkedIn.');
+console.log('OK: 8 visible apps + more projects, 7 icons, 14 screenshots, theme, glass renderer and LinkedIn.');
