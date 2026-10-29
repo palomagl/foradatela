@@ -1,7 +1,7 @@
-export type Project = { id: string; name: string; icon?: string; headline?: string; url?: string; screenshots: string[] };
+export type Project = { id: string; name: string; icon?: string; headline?: string; url?: string; showcase?: string; screenshots: string[] };
 export const projects: Project[] = [
-  { id: 'stopou', name: 'Stopou!', icon: '/projects/stopou.png', headline: 'Quem vai gritar STOP primeiro?', url: 'https://jogostop-rabisco.vercel.app/', screenshots: ['/projects/stopou/screen-01.png', '/projects/stopou/screen-02.png'] },
-  { id: 'ritimo', name: 'Ritmo', icon: '/projects/ritimo.png', url: 'https://ritmo-tau-inky.vercel.app/', screenshots: ['/projects/ritimo/screen-01.png', '/projects/ritimo/screen-02.png'], headline: 'Uma foto. Uma estimativa de calorias.' },
+  { id: 'stopou', name: 'Stopou!', icon: '/projects/stopou.png', headline: 'Quem vai gritar STOP primeiro?', showcase: '/projects/stopou/showcase.webp', url: 'https://jogostop-rabisco.vercel.app/', screenshots: ['/projects/stopou/screen-01.png', '/projects/stopou/screen-02.png'] },
+  { id: 'ritimo', name: 'Ritmo', icon: '/projects/ritimo.png', showcase: '/projects/ritimo/showcase.webp', url: 'https://ritmo-tau-inky.vercel.app/', screenshots: ['/projects/ritimo/screen-01.png', '/projects/ritimo/screen-02.png'], headline: 'Uma foto. Uma estimativa de calorias.' },
   { id: 'rotina', name: 'Minha Rotina', url: 'https://dashboard-three-khaki-68.vercel.app/', icon: '/projects/rotina.png', screenshots: ['/projects/rotina/screen-01.webp', '/projects/rotina/screen-02.webp'], headline: 'Mandou no Telegram? Tá anotado.' },
   { id: 'karoane', name: 'Karoane', url: 'https://karoane.vercel.app/', icon: '/projects/karoane.png', headline: 'Papelaria, bazar e muito mais.', screenshots: ['/projects/karoane/screen-01.png', '/projects/karoane/screen-02.png'] },
   { id: 'financas', name: 'Minhas Finanças', url: 'https://minhas-financas-9v4l.vercel.app/', icon: '/projects/financas.png', screenshots: ['/projects/financas/screen-01.png', '/projects/financas/screen-02.webp'], headline: 'Organizar o dinheiro pode ser simples.' },

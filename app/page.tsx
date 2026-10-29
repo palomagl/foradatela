@@ -141,6 +141,13 @@ export default function Home() {
               </div>
             )}
 
+            {selected.showcase ? (
+              <button type="button" className="project-showcase" onClick={() => setExpandedScreenshot(-1)}
+                aria-label={`Ampliar apresentação de ${selected.name}`}>
+                <img src={selected.showcase} width={900} height={675} loading="eager" decoding="async"
+                  alt={`Apresentação de ${selected.name} com duas telas reais do aplicativo`} />
+              </button>
+            ) : (
             <div className="gallery gallery-dual" aria-label={`Telas de ${selected.name}`}>
               {[0, 1].map((index) => selected.screenshots[index] ? (
                 <button type="button" className={`phone-preview dual-phone dual-phone-${index + 1}`}
@@ -156,7 +163,8 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            {selected.screenshots.length > 0 && (
+            )}
+            {selected.showcase ? <p className="gallery-hint">Toque na imagem para ampliar</p> : selected.screenshots.length > 0 && (
               <p className="gallery-hint">Toque nas telas para ampliar</p>
             )}
             </div>
@@ -168,6 +176,17 @@ export default function Home() {
               </a>
             ) : <div className="unavailable">Projeto em preparação</div>}
             </div>
+            {expandedScreenshot === -1 && selected.showcase && (
+              <div className="showcase-lightbox" role="region" aria-label={`Apresentação ampliada de ${selected.name}`}>
+                <div className="screenshot-lightbox-header">
+                  <span>{selected.name} · Apresentação</span>
+                  <button type="button" onClick={() => setExpandedScreenshot(null)}
+                    aria-label="Fechar imagem ampliada"><X size={22} /></button>
+                </div>
+                <img src={selected.showcase} width={900} height={675}
+                  alt={`Apresentação ampliada de ${selected.name}`} />
+              </div>
+            )}
             {expandedScreenshot !== null && selected.screenshots[expandedScreenshot] && (
               <div className="screenshot-lightbox" role="region" aria-label={`Tela ampliada de ${selected.name}`}>
                 <div className="screenshot-lightbox-header">

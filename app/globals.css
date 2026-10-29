@@ -499,3 +499,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
 .gallery.gallery-dual .dual-phone:focus-visible{
   outline:2px solid #d7f3ff;outline-offset:4px;
 }
+
+
+/* Finished showcase cards: screenshots + phones are already inside one designed image.
+   Never place a second mock phone frame around them. */
+.project-showcase{
+  display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/3;
+  padding:0;margin:15px 0 7px;border:1px solid rgb(255 255 255 / 46%);
+  background:transparent;border-radius:22px;overflow:hidden;
+  box-shadow:0 13px 32px rgb(7 20 47 / 17%),inset 0 1px rgb(255 255 255 / 35%);
+  cursor:zoom-in;touch-action:manipulation;
+}
+.project-showcase img{
+  display:block;width:100%;height:100%;object-fit:contain;object-position:center;
+  border:0;border-radius:21px;filter:none!important;transform:none!important;
+}
+.project-showcase:focus-visible{outline:2px solid #cdefff;outline-offset:3px}
+.showcase-lightbox{
+  position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;
+  padding:19px 15px max(19px,env(safe-area-inset-bottom));
+  background:linear-gradient(150deg,#273d62f7,#131e39fc);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+}
+.showcase-lightbox > img{
+  display:block;width:100%;height:auto;max-width:100%;max-height:calc(100% - 70px);
+  aspect-ratio:4/3;object-fit:contain;border-radius:20px;
+  box-shadow:0 18px 42px rgb(5 11 33 / 50%);
+}
+.panel-stopou .panel-scroll,.panel-ritimo .panel-scroll{padding-bottom:12px}
+.panel-stopou .project-description,.panel-ritimo .project-description{margin-bottom:9px}

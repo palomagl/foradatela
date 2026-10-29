@@ -34,18 +34,33 @@ test('7 real projects open with correct destinations and screenshots stay inside
     await expect(dialog).toBeVisible();
     await page.waitForTimeout(600); // Let the entrance transition finish before measuring image bounds.
     await expect(dialog.locator('a.cta')).toHaveAttribute('href',url);
-    const area=await dialog.locator('.gallery.gallery-dual').boundingBox();
-    expect(area).not.toBeNull();
-    const images=dialog.locator('.gallery.gallery-dual .dual-phone img');
-    await expect(images).toHaveCount(2);
-    for(const img of await images.all()){
-      await expect(img).toBeVisible();
-      expect(await img.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
-      const box=await img.boundingBox();expect(box).not.toBeNull();
-      expect(box!.x).toBeGreaterThanOrEqual(area!.x-2);
-      expect(box!.x+box!.width).toBeLessThanOrEqual(area!.x+area!.width+2);
-      expect(box!.y).toBeGreaterThanOrEqual(area!.y-2);
-      expect(box!.y+box!.height).toBeLessThanOrEqual(area!.y+area!.height+2);
+    if(project==='Stopou!' || project==='Ritmo'){
+      const presentation=dialog.locator('.project-showcase img');
+      await expect(presentation).toBeVisible();
+      expect(await presentation.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
+      const canvas=await dialog.locator('.project-showcase').boundingBox();
+      const image=await presentation.boundingBox();
+      expect(canvas).not.toBeNull();expect(image).not.toBeNull();
+      expect(image!.x).toBeGreaterThanOrEqual(canvas!.x-1);
+      expect(image!.x+image!.width).toBeLessThanOrEqual(canvas!.x+canvas!.width+1);
+      await dialog.locator('.project-showcase').click();
+      await expect(dialog.getByRole('region',{name:'Apresentação ampliada de '+project})).toBeVisible();
+      await dialog.getByRole('button',{name:'Fechar imagem ampliada'}).click();
+      await expect(dialog.getByRole('region',{name:'Apresentação ampliada de '+project})).toHaveCount(0);
+    }else{
+      const area=await dialog.locator('.gallery.gallery-dual').boundingBox();
+      expect(area).not.toBeNull();
+      const images=dialog.locator('.gallery.gallery-dual .dual-phone img');
+      await expect(images).toHaveCount(2);
+      for(const img of await images.all()){
+        await expect(img).toBeVisible();
+        expect(await img.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
+        const box=await img.boundingBox();expect(box).not.toBeNull();
+        expect(box!.x).toBeGreaterThanOrEqual(area!.x-2);
+        expect(box!.x+box!.width).toBeLessThanOrEqual(area!.x+area!.width+2);
+        expect(box!.y).toBeGreaterThanOrEqual(area!.y-2);
+        expect(box!.y+box!.height).toBeLessThanOrEqual(area!.y+area!.height+2);
+      }
     }
     await page.getByRole('button',{name:'Fechar projeto'}).click();
     await expect(dialog).not.toBeVisible();
