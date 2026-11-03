@@ -23,6 +23,7 @@ type Theme = 'system' | 'light' | 'dark';
 export default function Home() {
   const [theme, setTheme] = useState<Theme>('system');
   const [selected, setSelected] = useState<Project | null>(null);
+  const [featuredId, setFeaturedId] = useState('stopou');
   const [showMoreProjects, setShowMoreProjects] = useState(false);
   const [expandedScreenshot, setExpandedScreenshot] = useState<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -60,6 +61,8 @@ export default function Home() {
     trigger.current?.focus();
   }
 
+  const featured = projects.find(project => project.id === featuredId) || projects[0];
+
   const socials = [
     { name: 'GitHub', href: profile.github, Icon: Github },
     { name: 'LinkedIn', href: profile.linkedin, Icon: Linkedin },
@@ -76,7 +79,21 @@ export default function Home() {
             <span className="desktop-eyebrow">✦ CRIADO PARA IR ALÉM</span>
             <h2>Ideias que<br/><em>saem da tela.</em></h2>
             <p>Aplicativos, jogos e soluções digitais pensados para resolver problemas reais. Cada projeto tem uma história — explore a próxima.</p>
-            <span className="desktop-instruction">↗ &nbsp; Escolha um projeto para explorar</span>
+            <span className="desktop-instruction">↗ &nbsp; Passe o mouse nos projetos</span>
+          </div>
+          <div className="desktop-feature" aria-live="off">
+            <div className="desktop-feature-top"><span>EM DESTAQUE</span><span>VISUALIZAÇÃO INTERATIVA <span aria-hidden="true">✳</span></span></div>
+            <div className="desktop-feature-art" key={featured.id}>
+              {featured.showcase
+                ? <img src={featured.showcase} alt="" draggable={false} />
+                : <div className="desktop-feature-pending"><Plus size={46} strokeWidth={1} /><span>Mais uma ideia ganhando forma.</span></div>}
+            </div>
+            <div className="desktop-feature-bottom">
+              <div><span>{details[featured.id]?.subtitle}</span><strong>{featured.name}</strong></div>
+              <button type="button" onClick={() => { setExpandedScreenshot(null); setSelected(featured); }} aria-label={`Conhecer ${featured.name}`}>
+                Conhecer projeto <ArrowUpRight size={17}/>
+              </button>
+            </div>
           </div>
           <button className="theme-switch liquid-glass" onClick={changeTheme}
             aria-label="Alternar tema claro e escuro"
@@ -89,7 +106,8 @@ export default function Home() {
         <section id="projects" className="project-grid grid grid-cols-3" aria-label="Projetos">
           <div className="desktop-grid-heading"><span>PROJETOS SELECIONADOS</span><span>{String(projects.length).padStart(2, '0')} criações ↗</span></div>
           {projects.slice(0, 8).map((project) => (
-            <button className="project" key={project.id} aria-label={`Conhecer ${project.name}`}
+            <button className={`project ${featuredId === project.id ? "is-featured" : ""}`} key={project.id} aria-label={`Conhecer ${project.name}`}
+              onMouseEnter={() => setFeaturedId(project.id)} onFocus={() => setFeaturedId(project.id)}
               onClick={(event) => { trigger.current = event.currentTarget; setExpandedScreenshot(null); setSelected(project); }}>
               <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
                 {project.icon
