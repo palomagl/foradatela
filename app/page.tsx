@@ -90,7 +90,7 @@ export default function Home() {
             </div>
             <div className="desktop-feature-bottom">
               <div><span>{details[featured.id]?.subtitle}</span><strong>{featured.name}</strong></div>
-              <button type="button" onClick={() => { setExpandedScreenshot(null); setSelected(featured); }} aria-label={`Conhecer ${featured.name}`}>
+              <button type="button" onClick={() => { setExpandedScreenshot(null); setSelected(featured); }} aria-label={`Abrir destaque de ${featured.name}`}>
                 Conhecer projeto <ArrowUpRight size={17}/>
               </button>
             </div>

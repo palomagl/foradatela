@@ -5,7 +5,7 @@ const sites: Record<string,string> = {
   'Ritmo':'https://ritmo-tau-inky.vercel.app/',
   'Minha Rotina':'https://dashboard-three-khaki-68.vercel.app/',
   'Karoane':'https://karoane.vercel.app/',
-  'Minhas Finanças':'https://minhas-financas-9v4l.vercel.app/',
+  'Minhas Finanças':'https://minhasfinancas-steel-five.vercel.app/',
   'DOE+ RS':'https://doe-mais-rs.vercel.app/login',
   'Bruto':'https://borapedir-delivery.vercel.app/bruto'
 };
