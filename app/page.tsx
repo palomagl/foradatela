@@ -72,6 +72,12 @@ export default function Home() {
       <div className="home-screen mx-auto flex min-h-svh w-full flex-col">
         <header className="screen-header flex justify-end">
           <div className="site-brand"><h1>fora da tela<span>.</span></h1><p>Projetos que saem do papel.</p></div>
+          <div className="desktop-intro">
+            <span className="desktop-eyebrow">✦ CRIADO PARA IR ALÉM</span>
+            <h2>Ideias que<br/><em>saem da tela.</em></h2>
+            <p>Aplicativos, jogos e soluções digitais pensados para resolver problemas reais. Cada projeto tem uma história — explore a próxima.</p>
+            <span className="desktop-instruction">↗ &nbsp; Escolha um projeto para explorar</span>
+          </div>
           <button className="theme-switch liquid-glass" onClick={changeTheme}
             aria-label="Alternar tema claro e escuro"
             title="Alternar tema">
@@ -81,6 +87,7 @@ export default function Home() {
         </header>
 
         <section id="projects" className="project-grid grid grid-cols-3" aria-label="Projetos">
+          <div className="desktop-grid-heading"><span>PROJETOS SELECIONADOS</span><span>{String(projects.length).padStart(2, '0')} criações ↗</span></div>
           {projects.slice(0, 8).map((project) => (
             <button className="project" key={project.id} aria-label={`Conhecer ${project.name}`}
               onClick={(event) => { trigger.current = event.currentTarget; setExpandedScreenshot(null); setSelected(project); }}>
@@ -115,6 +122,7 @@ export default function Home() {
         )}
 
         <footer className="screen-footer">
+          <span className="desktop-social-label">CONTATO / REDES</span>
           <nav className="dock liquid-glass flex items-center justify-around" aria-label="Redes e contato">
             {socials.map(({ name, href, Icon }) => href ? (
               <a className="dock-item" key={name} href={href} target={name === 'E-mail' ? undefined : '_blank'}
