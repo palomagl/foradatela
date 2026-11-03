@@ -83,10 +83,23 @@ export default function Home() {
           </div>
           <div className="desktop-feature" aria-live="off">
             <div className="desktop-feature-top"><span>EM DESTAQUE</span><span>VISUALIZAÇÃO INTERATIVA <span aria-hidden="true">✳</span></span></div>
-            <div className="desktop-feature-art" key={featured.id}>
-              {featured.showcase
-                ? <img src={featured.showcase} alt="" draggable={false} />
-                : <div className="desktop-feature-pending"><Plus size={46} strokeWidth={1} /><span>Mais uma ideia ganhando forma.</span></div>}
+            <div className={`desktop-feature-art desktop-feature-art-${featured.id}`} key={featured.id}>
+              {featured.showcase && <img className="desktop-feature-composite" src={featured.showcase} alt="" draggable={false} />}
+              {featured.screenshots.length >= 2 ? (
+                <div className="desktop-phones-scene" aria-hidden="true">
+                  <div className="desktop-phones-glow" />
+                  <div className="desktop-phones-pair">
+                    {featured.screenshots.slice(0, 2).map((screenshot, index) => (
+                      <div className={`desktop-phone desktop-phone-${index + 1}`} key={screenshot}>
+                        <img src={screenshot} alt="" draggable={false} />
+                      </div>
+                    ))}
+                    <span className="desktop-phones-platform" />
+                  </div>
+                </div>
+              ) : !featured.showcase && (
+                <div className="desktop-feature-pending"><Plus size={46} strokeWidth={1} /><span>Mais uma ideia ganhando forma.</span></div>
+              )}
             </div>
             <div className="desktop-feature-bottom">
               <div className="desktop-feature-identity">{featured.icon && <img src={featured.icon} alt="" width={52} height={52} />}<span><small>{details[featured.id]?.subtitle}</small><strong>{featured.name}</strong></span></div>
