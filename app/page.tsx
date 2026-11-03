@@ -79,24 +79,7 @@ export default function Home() {
             <span className="desktop-eyebrow">✦ CRIADO PARA IR ALÉM</span>
             <h2>Ideias que<br/><em>saem da tela.</em></h2>
             <p>Aplicativos, jogos e soluções digitais pensados para resolver problemas reais. Cada projeto tem uma história — explore a próxima.</p>
-            <span className="desktop-instruction">↗ &nbsp; Passe o mouse nos projetos</span>
-          </div>
-          <div className="desktop-device-stage" key={featured.id} aria-hidden="true">
-            {featured.screenshots.length > 0 ? (
-              <div className="desktop-device-pair">
-                {featured.screenshots.slice(0, 2).map((screenshot, index) => (
-                  <div className={`desktop-device desktop-device-${index + 1}`} key={screenshot}>
-                    <img src={screenshot} alt="" draggable={false} />
-                  </div>
-                ))}
-                <div className="desktop-device-plinth" />
-              </div>
-            ) : (
-              <div className="desktop-device-empty">
-                <Plus size={42} strokeWidth={1.1} />
-                <span>Uma nova ideia ganhando forma.</span>
-              </div>
-            )}
+            <span className="desktop-instruction">Explore os projetos <ArrowUpRight size={16} /></span>
           </div>
           <div className="desktop-feature" aria-live="off">
             <div className="desktop-feature-top"><span>EM DESTAQUE</span><span>VISUALIZAÇÃO INTERATIVA <span aria-hidden="true">✳</span></span></div>
@@ -106,7 +89,7 @@ export default function Home() {
                 : <div className="desktop-feature-pending"><Plus size={46} strokeWidth={1} /><span>Mais uma ideia ganhando forma.</span></div>}
             </div>
             <div className="desktop-feature-bottom">
-              <div><span>{details[featured.id]?.subtitle}</span><strong>{featured.name}</strong></div>
+              <div className="desktop-feature-identity">{featured.icon && <img src={featured.icon} alt="" width={52} height={52} />}<span><small>{details[featured.id]?.subtitle}</small><strong>{featured.name}</strong></span></div>
               <button type="button" onClick={() => { setExpandedScreenshot(null); setSelected(featured); }} aria-label={`Abrir destaque de ${featured.name}`}>
                 Conhecer projeto <ArrowUpRight size={17}/>
               </button>
