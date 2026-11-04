@@ -101,6 +101,11 @@ export default function Home() {
               <button type="button" onClick={() => { setExpandedScreenshot(null); setSelected(featured); }} aria-label={`Abrir destaque de ${featured.name}`}>
                 Conhecer projeto <ArrowUpRight size={17}/>
               </button>
+              {featured.url ? (
+                <a className="desktop-feature-direct-link" href={featured.url} target="_blank" rel="noopener noreferrer" aria-label={`Conhecer projeto ${featured.name} diretamente`}>
+                  Conhecer projeto <ArrowUpRight size={17}/>
+                </a>
+              ) : <span className="desktop-feature-unavailable">Projeto em preparação</span>}
             </div>
           </div>
           <button className="theme-switch liquid-glass" onClick={changeTheme}
