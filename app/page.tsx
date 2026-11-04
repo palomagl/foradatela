@@ -91,8 +91,12 @@ export default function Home() {
                   <div className="desktop-stage-phones">
                     {featured.screenshots.slice(0, 2).map((screenshot, index) => (
                       <div className={`desktop-stage-phone desktop-stage-phone-${index + 1}`} key={screenshot}>
-                        <span className="desktop-stage-sensor" aria-hidden="true" />
-                        <img src={screenshot} alt={`Tela ${index + 1} do ${featured.name}`} draggable={false} />
+                        <span className="desktop-device-rail" aria-hidden="true" />
+                        <span className="desktop-device-button desktop-device-button-upper" aria-hidden="true" />
+                        <span className="desktop-device-button desktop-device-button-lower" aria-hidden="true" />
+                        <span className="desktop-device-glass">
+                          <img src={screenshot} alt={`Tela ${index + 1} do ${featured.name}`} draggable={false} />
+                        </span>
                       </div>
                     ))}
                   </div>
