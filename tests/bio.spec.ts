@@ -120,3 +120,21 @@ test('liquid glass fallback remains functional without WebGL',async({page})=>{
   await expect(page.getByRole('dialog')).not.toBeVisible();
   await expect(page.getByRole('button',{name:'Conhecer Stopou!'})).toBeFocused();
 });
+
+
+test('desktop featured CTA links straight to the selected project, mobile still uses its sheet',async({page})=>{
+  await page.goto('/');
+  const stopou=page.getByRole('link',{name:'Conhecer projeto Stopou! diretamente'});
+  if(test.info().project.name==='desktop'){
+    await expect(stopou).toBeVisible();
+    await expect(stopou).toHaveAttribute('href','https://jogostop-rabisco.vercel.app/');
+    await page.getByRole('button',{name:'Conhecer Karoane'}).hover();
+    const karoane=page.getByRole('link',{name:'Conhecer projeto Karoane diretamente'});
+    await expect(karoane).toBeVisible();
+    await expect(karoane).toHaveAttribute('href','https://karoane.vercel.app/');
+  }else{
+    await expect(stopou).toBeHidden();
+    await page.getByRole('button',{name:'Conhecer Stopou!'}).click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+  }
+});
