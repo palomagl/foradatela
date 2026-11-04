@@ -76,7 +76,7 @@ export default function Home() {
         <header className="screen-header flex justify-end">
           <div className="site-brand"><span className="desktop-brand-symbol" aria-hidden="true"><i/><i/></span><div><h1>fora da tela<span>.</span></h1><p>Projetos que saem do papel.</p></div></div>
           <div className="desktop-intro">
-            <span className="desktop-eyebrow">✦ CRIADO PARA IR ALÉM</span>
+            <span className="desktop-eyebrow">PORTFÓLIO DIGITAL</span>
             <h2>Ideias que<br/><em>saem da tela.</em></h2>
             <p>Aplicativos, jogos e soluções digitais pensados para resolver problemas reais. Cada projeto tem uma história — explore a próxima.</p>
             <span className="desktop-instruction"><ArrowUpRight size={16} /> Explore os projetos</span>
@@ -87,7 +87,7 @@ export default function Home() {
               {featured.screenshots.length >= 2 ? (
                 <div className="desktop-stage" aria-label={`Apresentação 3D de ${featured.name}`}>
                   <div className="desktop-stage-halo" aria-hidden="true" />
-                  <img className="desktop-stage-render" src={`/projects/${featured.id}/desktop-stage.webp`} alt={`Dois celulares com telas reais do ${featured.name} sobre uma base iluminada`} draggable={false} />
+                  <img className="desktop-stage-render" src={`/projects/${featured.id}/desktop-stage.webp?v=studio-20261104`} alt={`Dois celulares com telas reais do ${featured.name} sobre uma base iluminada`} draggable={false} />
                 </div>
               ) : (
                 <div className="desktop-stage desktop-stage-coming" aria-label={`${featured.name} em preparação`}>
