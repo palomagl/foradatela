@@ -74,16 +74,17 @@ export default function Home() {
       <div className="fluid-scene" aria-hidden="true"><span className="fluid-blob blob-one" /><span className="fluid-blob blob-two" /><span className="fluid-blob blob-three" /><LiquidGlassScene /></div>
       <div className="home-screen mx-auto flex min-h-svh w-full flex-col">
         <header className="screen-header flex justify-end">
-          <div className="site-brand"><h1>fora da tela<span>.</span></h1><p>Projetos que saem do papel.</p></div>
+          <div className="site-brand"><span className="desktop-brand-symbol" aria-hidden="true"><i/><i/></span><div><h1>fora da tela<span>.</span></h1><p>Projetos que saem do papel.</p></div></div>
           <div className="desktop-intro">
             <span className="desktop-eyebrow">✦ CRIADO PARA IR ALÉM</span>
             <h2>Ideias que<br/><em>saem da tela.</em></h2>
             <p>Aplicativos, jogos e soluções digitais pensados para resolver problemas reais. Cada projeto tem uma história — explore a próxima.</p>
-            <span className="desktop-instruction">Explore os projetos <ArrowUpRight size={16} /></span>
+            <span className="desktop-instruction"><ArrowUpRight size={16} /> Explore os projetos</span>
           </div>
           <div className="desktop-feature" aria-live="off">
             <div className="desktop-feature-top"><span>EM DESTAQUE</span><span>VISUALIZAÇÃO INTERATIVA <span aria-hidden="true">✳</span></span></div>
             <div className={`desktop-feature-art desktop-feature-art-${featured.id}`} key={featured.id}>
+              {featured.id === 'stopou' && <img className="desktop-reference-hero" src="/projects/stopou/desktop-hero.webp" alt="" draggable={false} />}
               {featured.showcase && <img className="desktop-feature-composite" src={featured.showcase} alt="" draggable={false} />}
               {featured.screenshots.length >= 2 ? (
                 <div className="desktop-phones-scene" aria-hidden="true">
