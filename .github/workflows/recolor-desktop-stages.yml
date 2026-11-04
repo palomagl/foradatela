@@ -1,0 +1,31 @@
+name: Padronizar vitrine 3D do desktop
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/recolor_desktop_stages.py'
+      - '.github/workflows/recolor-desktop-stages.yml'
+permissions:
+  contents: write
+jobs:
+  recolor-and-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pillow numpy
+      - run: python scripts/recolor_desktop_stages.py
+      - name: Publish aligned 3D assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/projects/*/desktop-stage.webp
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets: unify original 3D stage on violet brand [skip ci]'
+            git push origin HEAD:main
+          fi
