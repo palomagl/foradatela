@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 const html=fs.readFileSync('.next/server/app/index.html','utf8');
 assert.match(html,/fora da tela/i);
-assert.equal((html.match(/aria-label="Conhecer /g)||[]).length,8);
+assert.equal((html.match(/aria-label="Conhecer (?!projeto )/g)||[]).length,8); // Launcher items only; desktop direct CTA is separate.
 assert.match(html,/Ver mais projetos/);
 for(const asset of html.matchAll(/(?:src|href)="(\/(?:_next\/static|projects)\/[^"?]+)(?:\?[^" ]*)?"/g)){
   const local=asset[1].startsWith('/_next/')?'.next/'+asset[1].slice('/_next/'.length):'public'+asset[1];
