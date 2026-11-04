@@ -70,7 +70,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="universe relative isolate min-h-svh" data-panel-open={selected ? 'true' : 'false'}>
+    <main className="universe relative isolate min-h-svh" data-featured={featured.id} data-panel-open={selected ? 'true' : 'false'}>
       <div className="fluid-scene" aria-hidden="true"><span className="fluid-blob blob-one" /><span className="fluid-blob blob-two" /><span className="fluid-blob blob-three" /><LiquidGlassScene /></div>
       <div className="home-screen mx-auto flex min-h-svh w-full flex-col">
         <header className="screen-header flex justify-end">
@@ -84,22 +84,24 @@ export default function Home() {
           <div className="desktop-feature" aria-live="off">
             <div className="desktop-feature-top"><span>EM DESTAQUE</span><span>VISUALIZAÇÃO INTERATIVA <span aria-hidden="true">✳</span></span></div>
             <div className={`desktop-feature-art desktop-feature-art-${featured.id}`} key={featured.id}>
-              {featured.id === 'stopou' && <img className="desktop-reference-hero" src="/projects/stopou/desktop-hero.webp" alt="" draggable={false} />}
-              {featured.showcase && <img className="desktop-feature-composite" src={featured.showcase} alt="" draggable={false} />}
               {featured.screenshots.length >= 2 ? (
-                <div className="desktop-phones-scene" aria-hidden="true">
-                  <div className="desktop-phones-glow" />
-                  <div className="desktop-phones-pair">
+                <div className="desktop-stage" aria-label={`Prévia visual de ${featured.name}`}>
+                  <div className="desktop-stage-halo" aria-hidden="true" />
+                  <div className="desktop-stage-platform" aria-hidden="true" />
+                  <div className="desktop-stage-phones">
                     {featured.screenshots.slice(0, 2).map((screenshot, index) => (
-                      <div className={`desktop-phone desktop-phone-${index + 1}`} key={screenshot}>
-                        <img src={screenshot} alt="" draggable={false} />
+                      <div className={`desktop-stage-phone desktop-stage-phone-${index + 1}`} key={screenshot}>
+                        <span className="desktop-stage-sensor" aria-hidden="true" />
+                        <img src={screenshot} alt={`Tela ${index + 1} do ${featured.name}`} draggable={false} />
                       </div>
                     ))}
-                    <span className="desktop-phones-platform" />
                   </div>
                 </div>
-              ) : !featured.showcase && (
-                <div className="desktop-feature-pending"><Plus size={46} strokeWidth={1} /><span>Mais uma ideia ganhando forma.</span></div>
+              ) : (
+                <div className="desktop-stage desktop-stage-coming" aria-label={`${featured.name} em preparação`}>
+                  <span className="desktop-stage-coming-icon"><Plus size={42} strokeWidth={1.1} /></span>
+                  <span>Em preparação</span>
+                </div>
               )}
             </div>
             <div className="desktop-feature-bottom">
