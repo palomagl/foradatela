@@ -85,21 +85,9 @@ export default function Home() {
             <div className="desktop-feature-top"><span>EM DESTAQUE</span><span>VISUALIZAÇÃO INTERATIVA <span aria-hidden="true">✳</span></span></div>
             <div className={`desktop-feature-art desktop-feature-art-${featured.id}`} key={featured.id}>
               {featured.screenshots.length >= 2 ? (
-                <div className="desktop-stage" aria-label={`Prévia visual de ${featured.name}`}>
+                <div className="desktop-stage" aria-label={`Apresentação 3D de ${featured.name}`}>
                   <div className="desktop-stage-halo" aria-hidden="true" />
-                  <div className="desktop-stage-platform" aria-hidden="true" />
-                  <div className="desktop-stage-phones">
-                    {featured.screenshots.slice(0, 2).map((screenshot, index) => (
-                      <div className={`desktop-stage-phone desktop-stage-phone-${index + 1}`} key={screenshot}>
-                        <span className="desktop-device-rail" aria-hidden="true" />
-                        <span className="desktop-device-button desktop-device-button-upper" aria-hidden="true" />
-                        <span className="desktop-device-button desktop-device-button-lower" aria-hidden="true" />
-                        <span className="desktop-device-glass">
-                          <img src={screenshot} alt={`Tela ${index + 1} do ${featured.name}`} draggable={false} />
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  <img className="desktop-stage-render" src={`/projects/${featured.id}/desktop-stage.webp`} alt={`Dois celulares com telas reais do ${featured.name} sobre uma base iluminada`} draggable={false} />
                 </div>
               ) : (
                 <div className="desktop-stage desktop-stage-coming" aria-label={`${featured.name} em preparação`}>
