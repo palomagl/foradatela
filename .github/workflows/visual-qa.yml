@@ -1,0 +1,65 @@
+name: QA visual do desktop
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/page.tsx'
+      - 'app/globals.css'
+      - 'public/projects/**/desktop-stage.webp'
+      - '.github/workflows/visual-qa.yml'
+permissions:
+  contents: read
+jobs:
+  visual-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Render real laptop and phone screenshots
+        shell: bash
+        run: |
+          npm run start -- --port 3187 > /tmp/fdt-next.log 2>&1 &
+          for i in {1..45}; do
+            if curl -fsS http://127.0.0.1:3187 >/dev/null; then break; fi
+            sleep 2
+          done
+          node --input-type=module <<'JS'
+          import { chromium } from '@playwright/test';
+          const browser = await chromium.launch({headless:true});
+          const targets = [
+            {tag:'DARK_1672',width:1672,height:941,theme:'dark'},
+            {tag:'DARK_1440',width:1440,height:800,theme:'dark'},
+            {tag:'LIGHT_1672',width:1672,height:941,theme:'light'},
+            {tag:'MOBILE_390',width:390,height:844,theme:'dark'}
+          ];
+          for (const t of targets) {
+            const page=await browser.newPage({viewport:{width:t.width,height:t.height},colorScheme:t.theme,deviceScaleFactor:1});
+            const errors=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            await page.goto('http://127.0.0.1:3187',{waitUntil:'networkidle',timeout:60000});
+            await page.evaluate((theme)=>{document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme},t.theme);
+            await page.waitForTimeout(750);
+            const doc=await page.evaluate(()=>({
+              scrollWidth:document.documentElement.scrollWidth,
+              viewportWidth:innerWidth,
+              scrollHeight:document.documentElement.scrollHeight,
+              viewportHeight:innerHeight,
+              stage: (()=>{const e=document.querySelector('.desktop-stage-render');if(!e)return null;const b=e.getBoundingClientRect();return {loaded:e.complete&&e.naturalWidth>0,x:Math.round(b.x),y:Math.round(b.y),width:Math.round(b.width),height:Math.round(b.height)}})()
+            }));
+            console.log('FDT_LAYOUT '+t.tag+' '+JSON.stringify({doc,errors}));
+            const bytes=await page.screenshot({type:'jpeg',quality:70,fullPage:false});
+            const encoded=bytes.toString('base64');
+            console.log('FDT_IMAGE_BEGIN '+t.tag);
+            for(let i=0;i<encoded.length;i+=3000)console.log('FDT_IMAGE_CHUNK '+encoded.slice(i,i+3000));
+            console.log('FDT_IMAGE_END '+t.tag);
+            await page.close();
+          }
+          await browser.close();
+          JS
