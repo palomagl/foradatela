@@ -107,7 +107,11 @@ test('liquid glass fallback remains functional without WebGL',async({page})=>{
     } as typeof original;
   });
   await page.goto('/');
-  await expect(page.locator('.fluid-scene')).toBeVisible();
+  if (test.info().project.name === 'desktop') {
+    await expect(page.locator('.fluid-scene')).toBeHidden(); // Desktop uses a static, responsive atmosphere.
+  } else {
+    await expect(page.locator('.fluid-scene')).toBeVisible(); // Mobile keeps the original scene.
+  }
   await expect(page.locator('.fluid-blob')).toHaveCount(3);
   await expect(page.locator('.liquid-glass-canvas')).toHaveCount(1);
   await page.getByRole('button',{name:'Conhecer Stopou!'}).click();
