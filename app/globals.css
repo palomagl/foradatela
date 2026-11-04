@@ -1373,3 +1373,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
   .desktop-stage-phone{height:min(80%,365px)}
   .desktop-device-glass{inset:5px}
 }
+
+
+/* Keep full-resolution gallery images inside their bordered desktop containers. */
+@media(min-width:1100px) {
+  .panel-scroll>.project-showcase img {
+    display:block;
+    width:calc(100% - 4px);
+    max-width:calc(100% - 4px);
+    margin-inline:auto;
+    height:auto;
+    object-fit:contain;
+  }
+}
