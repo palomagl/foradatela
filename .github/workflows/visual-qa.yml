@@ -51,7 +51,7 @@ jobs:
               viewportWidth:innerWidth,
               scrollHeight:document.documentElement.scrollHeight,
               viewportHeight:innerHeight,
-              stage: (()=>{const e=document.querySelector('.desktop-stage-render');if(!e)return null;const b=e.getBoundingClientRect();return {loaded:e.complete&&e.naturalWidth>0,x:Math.round(b.x),y:Math.round(b.y),width:Math.round(b.width),height:Math.round(b.height)}})()
+              stage: (()=>{const e=document.querySelector('.desktop-stage-render');if(!e)return null;const b=e.getBoundingClientRect();const screens=[...e.querySelectorAll('img')];return {loaded:screens.length===2&&screens.every(i=>i.complete&&i.naturalWidth>0),x:Math.round(b.x),y:Math.round(b.y),width:Math.round(b.width),height:Math.round(b.height)}})()
             }));
             console.log('FDT_LAYOUT '+t.tag+' '+JSON.stringify({doc,errors}));
             const bytes=await page.screenshot({type:'jpeg',quality:70,fullPage:false});

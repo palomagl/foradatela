@@ -663,13 +663,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
       radial-gradient(ellipse 43% 40% at 101% 111%,#6740be45,transparent 74%),
       linear-gradient(116deg,#19162f 0%,#231c48 60%,#1a1635 100%);
   }
-  .universe[data-featured="stopou"]{--fdt-project:91,102,231}
+  .universe[data-featured="stopou"]{--fdt-project:50,90,221}
   .universe[data-featured="ritimo"]{--fdt-project:139,111,229}
   .universe[data-featured="rotina"]{--fdt-project:56,179,169}
-  .universe[data-featured="karoane"]{--fdt-project:217,139,90}
+  .universe[data-featured="karoane"]{--fdt-project:232,137,62}
   .universe[data-featured="financas"]{--fdt-project:64,157,110}
   .universe[data-featured="doe"]{--fdt-project:215,86,102}
-  .universe[data-featured="bruto"]{--fdt-project:206,118,69}
+  .universe[data-featured="bruto"]{--fdt-project:224,91,49}
   .universe[data-featured="roxo"]{--fdt-project:166,115,203}
   .universe::before,.universe::after{
     content:"";pointer-events:none;position:absolute;z-index:0;
@@ -792,12 +792,75 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
   }
   .desktop-stage-render{
     position:relative;z-index:2;
-    display:block;width:auto!important;
+    display:block;width:100%;
     height:min(100%,610px)!important;
-    max-width:124%!important;max-height:100%!important;
-    object-fit:contain!important;object-position:center!important;
-    filter:drop-shadow(0 14px 25px rgba(var(--fdt-project),.11));
+    max-width:580px;max-height:100%;
     user-select:none;pointer-events:none;
+    perspective:1500px;container-type:size;
+  }
+  .studio-floor-shadow{
+    position:absolute;left:5%;right:5%;bottom:3%;height:10%;
+    background:radial-gradient(ellipse,#0c10294a,transparent 70%);
+    filter:blur(12px);
+  }
+  .studio-plinth{
+    position:absolute;z-index:1;left:3%;right:3%;bottom:8%;height:12%;
+    border-radius:50% / 32%;
+    background:linear-gradient(90deg,
+      rgba(var(--fdt-project),.6),rgba(var(--fdt-project),.94) 14%,
+      rgba(var(--fdt-project),.42) 40%,rgba(var(--fdt-project),.9) 76%,
+      rgba(var(--fdt-project),.55));
+    box-shadow:inset 0 -3px 5px #10122740,0 15px 28px rgba(var(--fdt-project),.16);
+  }
+  .studio-plinth::before{
+    content:"";position:absolute;inset:0 0 30%;border-radius:50%;
+    background:linear-gradient(165deg,#ffffffdc,rgba(var(--fdt-project),.38) 55%,rgba(var(--fdt-project),.8));
+    border:1px solid #ffffff9c;
+    box-shadow:inset 0 2px 3px #ffffffaa,0 2px 3px #ffffff25;
+  }
+  .studio-plinth::after{
+    content:"";position:absolute;left:12%;right:12%;top:12%;height:35%;
+    border-radius:50%;background:rgba(var(--fdt-project),.3);filter:blur(8px);
+  }
+  .studio-device{
+    position:absolute;z-index:3;bottom:16%;width:min(38cqw,37cqh);height:auto;aspect-ratio:.48;
+    padding:4px;border-radius:clamp(20px,2.7vw,43px);
+    background:linear-gradient(115deg,#f7f9ff 0%,#b0b6c5 9%,#303743 19%,#eff2fa 34%,#737d90 65%,#282e38 90%,#dce1ed);
+    box-shadow:1px 0 0 #ffffffc9,-2px 1px 0 #424957,8px 15px 20px #080c2a40;
+    transform-style:preserve-3d;transform-origin:50% 95%;
+  }
+  .studio-device-1{left:14%;transform:rotateY(10deg) rotateZ(-9deg)}
+  .studio-device-2{right:12%;width:min(36cqw,35cqh);z-index:4;transform:rotateY(-10deg) rotateZ(7deg)}
+  .studio-device-screen{
+    position:relative;width:100%;height:100%;padding:4px;
+    border-radius:inherit;overflow:hidden;background:#101319;
+    box-shadow:inset 0 0 0 1px #ffffff6b;
+  }
+  .studio-device-screen img{
+    display:block;width:107%;max-width:none;height:100%;object-fit:fill;
+    border-radius:clamp(14px,2.2vw,35px);
+  }
+  /* Fit legacy screenshots inside a single new chassis, hiding their old side rails. */
+  .desktop-feature-art-karoane .studio-device-1 .studio-device-screen img{width:100%}
+  .desktop-feature-art-ritimo .studio-device-screen img{width:109%}
+  .desktop-feature-art-financas .studio-device-screen img{width:117%;margin-left:-8%;height:105%;margin-top:-2.5%}
+  .desktop-feature-art-doe .studio-device-screen img{width:104%;margin-left:-1%}
+  .desktop-feature-art-bruto .studio-device-1 .studio-device-screen img{width:100%}
+  .studio-device-screen::before{
+    content:"";position:absolute;z-index:2;top:5px;left:33%;width:34%;height:3.5%;
+    min-height:9px;max-height:16px;border-radius:0 0 12px 12px;
+    background:radial-gradient(circle at 80% 40%,#222b47 0 2px,transparent 3px),#0b0e16;
+    box-shadow:0 1px 1px #ffffff19;
+  }
+  .studio-device-screen::after{
+    content:"";pointer-events:none;position:absolute;inset:0;border-radius:inherit;
+    background:linear-gradient(116deg,#ffffff17,transparent 28%,transparent 82%,#ffffff08);
+    box-shadow:inset 1px 1px 1px #ffffff73;
+  }
+  .studio-device-buttons{
+    position:absolute;left:-3px;top:19%;width:3px;height:8%;border-radius:2px;
+    background:linear-gradient(90deg,#454c5e,#c8cdda);
+    box-shadow:0 42px 0 #778093;
   }
   .desktop-stage-coming{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#d0c5ee;font-size:13px}
   .desktop-stage-coming-icon{display:grid;place-items:center;width:110px;height:110px;border:1px solid #ffffff4a;border-radius:28px;background:#ffffff21}

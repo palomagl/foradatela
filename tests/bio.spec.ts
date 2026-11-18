@@ -133,6 +133,29 @@ test('desktop featured CTA links straight to the selected project, mobile still 
     const karoane=page.getByRole('link',{name:'Conhecer projeto Karoane diretamente'});
     await expect(karoane).toBeVisible();
     await expect(karoane).toHaveAttribute('href','https://karoane.vercel.app/');
+    const stage=page.locator('.desktop-stage-render');
+    const colors=new Set<string>();
+    for(const name of ['Stopou!','Ritmo','Karoane','Minhas Finanças','Bruto']){
+      await page.getByRole('button',{name:'Conhecer '+name,exact:true}).hover();
+      const screens=stage.locator('.studio-device-screen img');
+      await expect(screens).toHaveCount(2);
+      for(const screen of await screens.all()){
+        await expect(screen).toBeVisible();
+        await expect.poll(()=>screen.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
+      }
+      colors.add(await page.locator('.studio-plinth').evaluate(e=>getComputedStyle(e).backgroundImage));
+      const phones=await stage.boundingBox();
+      const cta=await page.locator('.desktop-feature-direct-link').boundingBox();
+      expect(phones!.y+phones!.height).toBeLessThanOrEqual(cta!.y);
+      for(const device of await stage.locator('.studio-device').all()){
+        const bounds=await device.boundingBox();
+        expect(bounds!.x).toBeGreaterThanOrEqual(phones!.x);
+        expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(phones!.x+phones!.width);
+        expect(bounds!.y).toBeGreaterThanOrEqual(phones!.y);
+        expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(cta!.y);
+      }
+    }
+    expect(colors.size).toBe(5);
   }else{
     await expect(stopou).toBeHidden();
     await page.getByRole('button',{name:'Conhecer Stopou!'}).click();

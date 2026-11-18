@@ -88,7 +88,18 @@ export default function Home() {
               {featured.screenshots.length >= 2 ? (
                 <div className="desktop-stage" aria-label={`Apresentação 3D de ${featured.name}`}>
                   <div className="desktop-stage-halo" aria-hidden="true" />
-                  <img className="desktop-stage-render" src={`/projects/${featured.id}/desktop-stage.webp?v=studio-20261104`} alt={`Dois celulares com telas reais do ${featured.name} sobre uma base iluminada`} draggable={false} />
+                  <div className="desktop-stage-render">
+                    <div className="studio-floor-shadow" aria-hidden="true" />
+                    <div className="studio-plinth" aria-hidden="true" />
+                    {featured.screenshots.slice(0, 2).map((src, index) => (
+                      <div className={`studio-device studio-device-${index + 1}`} key={src}>
+                        <div className="studio-device-buttons" aria-hidden="true" />
+                        <div className="studio-device-screen">
+                          <img src={src.replace(/\.webp$/, '.png')} alt={`Tela ${index + 1} de ${featured.name}`} width={390} height={800} draggable={false} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ) : (
                 <div className="desktop-stage desktop-stage-coming" aria-label={`${featured.name}: ${featured.url ? 'prévia em preparação' : 'projeto em preparação'}`}>
