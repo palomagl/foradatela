@@ -14,6 +14,7 @@ const details: Record<string, { subtitle: string; description: string }> = {
   financas: { subtitle: 'Finanças pessoais · Família', description: 'Controle despesas e entradas, acompanhe seu saldo disponível e organize contas em um só lugar. Compartilhe gastos da família em tempo real, sem misturar as finanças pessoais.' },
   doe: { subtitle: 'Doação de sangue · RS', description: 'Encontre hemocentros próximos pela sua localização, consulte informações para doar e registre suas doações. Acompanhe conquistas e tenha sua carteirinha digital sempre à mão.' },
   bruto: { subtitle: 'Hamburgueria · Demonstração', description: 'Uma experiência digital de hamburgueria: explore o cardápio, escolha produtos e conheça o fluxo de pedidos. Demonstração sem venda real.' },
+  roxo: { subtitle: 'Açaiteria · Delivery', description: 'Explore o cardápio de açaís, monte seu copo com os acompanhamentos favoritos e confira os combos. Organize sua sacola e escolha entre entrega e retirada.' },
   barbearia: { subtitle: 'Agendamento de serviços', description: 'Uma experiência de agendamento para conhecer serviços e escolher horários em uma barbearia. Projeto em preparação.' },
   vertice: { subtitle: 'Marmoraria · Projeto 3D', description: 'Uma vitrine digital para visualizar projetos de marmoraria e explorar opções de orçamento. Projeto em preparação.' },
 };
@@ -90,9 +91,9 @@ export default function Home() {
                   <img className="desktop-stage-render" src={`/projects/${featured.id}/desktop-stage.webp?v=studio-20261104`} alt={`Dois celulares com telas reais do ${featured.name} sobre uma base iluminada`} draggable={false} />
                 </div>
               ) : (
-                <div className="desktop-stage desktop-stage-coming" aria-label={`${featured.name} em preparação`}>
+                <div className="desktop-stage desktop-stage-coming" aria-label={`${featured.name}: ${featured.url ? 'prévia em preparação' : 'projeto em preparação'}`}>
                   <span className="desktop-stage-coming-icon"><Plus size={42} strokeWidth={1.1} /></span>
-                  <span>Em preparação</span>
+                  <span>{featured.url ? 'Prévia em preparação' : 'Em preparação'}</span>
                 </div>
               )}
             </div>
@@ -125,7 +126,7 @@ export default function Home() {
               <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
                 {project.icon
                   ? <img src={project.icon} alt="" width={96} height={96} draggable={false} />
-                  : <Plus size={28} strokeWidth={1} />}
+                  : project.url ? <span className="project-monogram" aria-hidden="true">{project.name[0]}</span> : <Plus size={28} strokeWidth={1} />}
               </span>
               <span className="project-name">{project.name}</span>
             </button>
@@ -240,6 +241,11 @@ export default function Home() {
                 <ArrowUpRight size={20} />
               </a>
             ) : <div className="unavailable">Projeto em preparação</div>}
+            {selected.repository && (
+              <a className="repository-link flex items-center justify-center" href={selected.repository} target="_blank" rel="noopener noreferrer">
+                <Github size={18} /> Ver código no GitHub <ArrowUpRight size={16} />
+              </a>
+            )}
             </div>
             {expandedScreenshot === -1 && selected.showcase && (
               <div className="showcase-lightbox" role="region" aria-label={`Apresentação ampliada de ${selected.name}`}>

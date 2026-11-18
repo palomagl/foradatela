@@ -10,13 +10,14 @@ const sites: Record<string,string> = {
   'Bruto':'https://borapedir-delivery.vercel.app/bruto'
 };
 
-test('9 apps, icons and social links',async({page})=>{
+test('8 visible apps, more projects, icons and social links',async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('/');
   await expect(page.getByRole('heading',{name:/fora da tela/})).toBeVisible();
   await expect(page.getByRole('button',{name:/^Conhecer /})).toHaveCount(8);
   await expect(page.getByRole('button',{name:'Ver mais projetos'})).toBeVisible();
   await page.getByRole('button',{name:'Ver mais projetos'}).click();
+  await expect(page.getByRole('button',{name:'Conhecer Barbearia'})).toBeVisible();
   await expect(page.getByRole('button',{name:'Conhecer Vértice'})).toBeVisible();
   await page.getByRole('button',{name:'Ver menos'}).click();
   await expect(page.locator('.app-icon img')).toHaveCount(7);
@@ -73,8 +74,8 @@ test('7 real projects open with correct destinations and screenshots stay inside
 
 test('unpublished apps have no dead external links',async({page})=>{
   await page.goto('/');
+  await page.getByRole('button',{name:'Ver mais projetos'}).click();
   for(const project of ['Barbearia','Vértice']){
-    if(project==='Vértice') await page.getByRole('button',{name:'Ver mais projetos'}).click();
     await page.getByRole('button',{name:'Conhecer '+project}).click();
     await expect(page.getByRole('dialog')).toContainText('Projeto em preparação');
     await expect(page.getByRole('dialog').locator('a.cta')).toHaveCount(0);
