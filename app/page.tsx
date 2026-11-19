@@ -163,20 +163,21 @@ export default function Home() {
             </span>
             <span className="project-name">{showMoreProjects ? 'Ver menos' : 'Ver mais projetos'}</span>
           </button>
+          {showMoreProjects && (
+            <section id="additional-projects" className="project-grid grid grid-cols-3 extra-projects" aria-label="Mais projetos">
+              {projects.slice(8).map((project) => (
+                <button className={`project ${featuredId === project.id ? 'is-featured' : ''}`} key={project.id} aria-label={`Conhecer ${project.name}`}
+                  onMouseEnter={() => setFeaturedId(project.id)} onFocus={() => setFeaturedId(project.id)}
+                  onClick={(event) => { trigger.current = event.currentTarget; setExpandedScreenshot(null); setSelected(project); }}>
+                  <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
+                    {project.icon ? <img src={project.icon} alt="" width={96} height={96} draggable={false} /> : <Plus size={28} strokeWidth={1} />}
+                  </span>
+                  <span className="project-name">{project.name}</span>
+                </button>
+              ))}
+            </section>
+          )}
         </section>
-        {showMoreProjects && (
-          <section id="additional-projects" className="project-grid grid grid-cols-3 extra-projects" aria-label="Mais projetos">
-            {projects.slice(8).map((project) => (
-              <button className="project" key={project.id} aria-label={`Conhecer ${project.name}`}
-                onClick={(event) => { trigger.current = event.currentTarget; setExpandedScreenshot(null); setSelected(project); }}>
-                <span className={`app-icon ${project.icon ? '' : 'empty-icon liquid-glass'}`}>
-                  {project.icon ? <img src={project.icon} alt="" width={96} height={96} draggable={false} /> : <Plus size={28} strokeWidth={1} />}
-                </span>
-                <span className="project-name">{project.name}</span>
-              </button>
-            ))}
-          </section>
-        )}
 
         <footer className="screen-footer">
           <span className="desktop-social-label">CONTATO / REDES</span>
