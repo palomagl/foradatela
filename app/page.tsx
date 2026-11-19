@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { ArrowUpRight, Mail, Moon, Sun, X, Plus, Bot } from 'lucide-react';
 import { Github, Linkedin } from '@/components/social-icons';
 import { projects, profile, type Project } from '@/lib/projects';
+import { desktopScreens } from '@/lib/desktop-screens';
 import { LiquidGlassScene } from '@/components/liquid-glass-scene';
 
 const details: Record<string, { subtitle: string; description: string }> = {
@@ -91,11 +92,24 @@ export default function Home() {
                   <div className="desktop-stage-render">
                     <div className="studio-floor-shadow" aria-hidden="true" />
                     <div className="studio-plinth" aria-hidden="true" />
-                    {featured.screenshots.slice(0, 2).map((src, index) => (
-                      <div className={`studio-device studio-device-${index + 1}`} key={src}>
+                    {desktopScreens(featured).map((screen, index) => (
+                      <div className={`studio-device studio-device-${index + 1}`} key={screen.src}
+                        style={{ '--screen-background': screen.background, '--status-background': screen.statusBackground, '--status-ink': screen.statusInk } as CSSProperties}>
                         <div className="studio-device-buttons" aria-hidden="true" />
                         <div className="studio-device-screen">
-                          <img src={src.replace(/\.webp$/, '.png')} alt={`Tela ${index + 1} de ${featured.name}`} width={390} height={800} draggable={false} />
+                          <div className="studio-status" aria-hidden="true"><span>9:41</span><span className="studio-status-icons"><svg viewBox="0 0 44 12"><path d="M1 9V7h2v2zm4 0V5h2v4zm4 0V3h2v6zm4 0V1h2v8z" fill="currentColor"/><path d="M18 4q5-5 10 0m-8 2q3-3 6 0m-4 2q1-1 2 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><rect x="32" y="2" width="9" height="7" rx="1.5" fill="none" stroke="currentColor"/><path d="M34 4h5v3h-5zM42 4v3" fill="currentColor" stroke="currentColor"/></svg></span></div>
+                          <div className="studio-app">
+                            <svg className="studio-capture" viewBox={screen.crop.join(' ')} preserveAspectRatio="xMidYMin meet" role="img" aria-label={`Tela ${index + 1} de ${featured.name}`}>
+                              <defs><clipPath id={`screen-${featured.id}-${index}`}>
+                                {screen.maskPath ? <path d={screen.maskPath} /> : <rect x={screen.crop[0]} y={screen.crop[1]} width={screen.crop[2]} height={screen.crop[3]} />}
+                              </clipPath></defs>
+                              {screen.bottomRadius > 0 && <rect x={screen.crop[0]} y={screen.crop[1] + screen.crop[3] - screen.bottomRadius} width={screen.crop[2]} height={screen.bottomRadius} fill={screen.bottomColor} />}
+                              <foreignObject x="0" y="0" width={screen.width} height={screen.height} clipPath={`url(#screen-${featured.id}-${index})`}>
+                                <img src={screen.src} alt="" width={screen.width} height={screen.height} draggable={false} />
+                              </foreignObject>
+                            </svg>
+                          </div>
+                          <span className="studio-home-indicator" aria-hidden="true" />
                         </div>
                       </div>
                     ))}
@@ -252,11 +266,6 @@ export default function Home() {
                 <ArrowUpRight size={20} />
               </a>
             ) : <div className="unavailable">Projeto em preparação</div>}
-            {selected.repository && (
-              <a className="repository-link flex items-center justify-center" href={selected.repository} target="_blank" rel="noopener noreferrer">
-                <Github size={18} /> Ver código no GitHub <ArrowUpRight size={16} />
-              </a>
-            )}
             </div>
             {expandedScreenshot === -1 && selected.showcase && (
               <div className="showcase-lightbox" role="region" aria-label={`Apresentação ampliada de ${selected.name}`}>

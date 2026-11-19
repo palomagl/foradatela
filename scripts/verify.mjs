@@ -10,7 +10,7 @@ for(const asset of html.matchAll(/(?:src|href)="(\/(?:_next\/static|projects)\/[
   const local=asset[1].startsWith('/_next/')?'.next/'+asset[1].slice('/_next/'.length):'public'+asset[1];
   assert.ok(fs.existsSync(local),'Missing asset: '+local);
 }
-const slugs=['stopou','ritimo','rotina','karoane','financas','doe','bruto'];
+const slugs=['stopou','ritimo','rotina','karoane','financas','doe','bruto','roxo'];
 for(const slug of slugs){
   const icon=fs.readFileSync('public/projects/'+slug+'.png');
   assert.equal(icon.subarray(1,4).toString(),'PNG');
@@ -35,4 +35,4 @@ for(const saved of [null,'dark','light']){
 }
 assert.ok(fs.readFileSync('components/liquid-glass-scene.tsx','utf8').includes('webgl'));
 assert.ok(fs.readFileSync('lib/projects.ts','utf8').includes('https://www.linkedin.com/in/palomagl'));
-console.log('OK: 8 visible apps + more projects, 7 icons, 14 screenshots, theme, glass renderer and LinkedIn.');
+console.log('OK: 8 visible apps + more projects, 8 icons, 16 screenshots, theme, glass renderer and LinkedIn.');

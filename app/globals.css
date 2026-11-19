@@ -65,8 +65,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid #c6e8ff; outline-offs
 .app-icon { width: clamp(68px, 20vw, 86px); aspect-ratio: 1; display: grid; place-items: center; border-radius: 25%; overflow: hidden; border: 1px solid #ffffff70; box-shadow: inset 0 1px 1px #ffffff70, 0 6px 17px #0006, 0 0 1px 1px #0002; }
 .app-icon img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .project-monogram { display: grid; place-items: center; width: 100%; height: 100%; background: #d6bfe8; color: #4a2057; font-size: 42px; font-weight: 800; }
-.repository-link { min-height: 44px; gap: 8px; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
-.panel-roxo .panel-actions { flex-wrap: wrap; }
 .panel-roxo .cta { background: linear-gradient(120deg, #9254ba, #64197a); border-color: #d6bfe8; }
 .empty-icon { color: #e7f3ff9c; border-color: #d4e9ff50; background: linear-gradient(145deg, #284a6280, #081523a8); }
 .project-name { font-size: clamp(10px, 2.95vw, 13px); line-height: 1.2; white-space: nowrap; margin-top: 9px; text-shadow: 0 1px 3px #000, 0 2px 12px #000; letter-spacing: -.15px; }
@@ -806,25 +804,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
   .studio-plinth{
     position:absolute;z-index:1;left:3%;right:3%;bottom:8%;height:12%;
     border-radius:50% / 32%;
-    background:linear-gradient(90deg,
-      rgba(var(--fdt-project),.6),rgba(var(--fdt-project),.94) 14%,
-      rgba(var(--fdt-project),.42) 40%,rgba(var(--fdt-project),.9) 76%,
-      rgba(var(--fdt-project),.55));
-    box-shadow:inset 0 -3px 5px #10122740,0 15px 28px rgba(var(--fdt-project),.16);
+    background:linear-gradient(90deg,#6c737f,#a0a6af 17%,#757d89 48%,#a8aeb7 79%,#737b87);
+    box-shadow:inset 0 -3px 5px #161b2440,0 15px 28px #11182726;
   }
   .studio-plinth::before{
     content:"";position:absolute;inset:0 0 30%;border-radius:50%;
-    background:linear-gradient(165deg,#ffffffdc,rgba(var(--fdt-project),.38) 55%,rgba(var(--fdt-project),.8));
-    border:1px solid #ffffff9c;
+    background:linear-gradient(165deg,#f5f6f8,#bec4cd 55%,#8f98a6);
+    border:1px solid #eef1f7b8;
     box-shadow:inset 0 2px 3px #ffffffaa,0 2px 3px #ffffff25;
   }
   .studio-plinth::after{
     content:"";position:absolute;left:12%;right:12%;top:12%;height:35%;
-    border-radius:50%;background:rgba(var(--fdt-project),.3);filter:blur(8px);
+    border-radius:50%;background:#37415129;filter:blur(8px);
   }
   .studio-device{
     position:absolute;z-index:3;bottom:16%;width:min(38cqw,37cqh);height:auto;aspect-ratio:.48;
-    padding:4px;border-radius:clamp(20px,2.7vw,43px);
+    padding:2px;border-radius:13.5% / 6.48%;container-type:inline-size;
     background:linear-gradient(115deg,#f7f9ff 0%,#b0b6c5 9%,#303743 19%,#eff2fa 34%,#737d90 65%,#282e38 90%,#dce1ed);
     box-shadow:1px 0 0 #ffffffc9,-2px 1px 0 #424957,8px 15px 20px #080c2a40;
     transform-style:preserve-3d;transform-origin:50% 95%;
@@ -832,23 +827,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
   .studio-device-1{left:14%;transform:rotateY(10deg) rotateZ(-9deg)}
   .studio-device-2{right:12%;width:min(36cqw,35cqh);z-index:4;transform:rotateY(-10deg) rotateZ(7deg)}
   .studio-device-screen{
-    position:relative;width:100%;height:100%;padding:4px;
-    border-radius:inherit;overflow:hidden;background:#101319;
-    box-shadow:inset 0 0 0 1px #ffffff6b;
+    position:relative;width:100%;height:100%;border:3px solid #101319;
+    border-radius:inherit;overflow:hidden;background:var(--screen-background);
+    box-shadow:0 0 0 1px #ffffff52;
   }
-  .studio-device-screen img{
-    display:block;width:107%;max-width:none;height:100%;object-fit:fill;
-    border-radius:clamp(14px,2.2vw,35px);
+  .studio-status{
+    position:absolute;top:0;inset-inline:0;height:6%;z-index:2;
+    display:flex;align-items:center;justify-content:space-between;padding:0 7%;
+    background:var(--status-background);color:var(--status-ink);
+    font:700 4.7cqw/1 Arial,sans-serif;
   }
-  /* Fit legacy screenshots inside a single new chassis, hiding their old side rails. */
-  .desktop-feature-art-karoane .studio-device-1 .studio-device-screen img{width:100%}
-  .desktop-feature-art-ritimo .studio-device-screen img{width:109%}
-  .desktop-feature-art-financas .studio-device-screen img{width:117%;margin-left:-8%;height:105%;margin-top:-2.5%}
-  .desktop-feature-art-doe .studio-device-screen img{width:104%;margin-left:-1%}
-  .desktop-feature-art-bruto .studio-device-1 .studio-device-screen img{width:100%}
+  .studio-status-icons{display:block;width:24%;height:auto}
+  .studio-status-icons svg{display:block;width:100%;height:auto}
+  .studio-app{
+    position:absolute;top:6%;bottom:3%;inset-inline:0;overflow:hidden;
+    background:var(--screen-background);
+  }
+  .studio-capture{display:block;width:100%;height:100%;overflow:hidden}
+  .studio-capture img{display:block;width:100%;height:100%;max-width:none}
+  .studio-home-indicator{
+    position:absolute;bottom:1%;left:34%;width:32%;height:.65%;
+    border-radius:999px;background:#10131980;
+  }
+  .desktop-feature-art-stopou .studio-home-indicator,
+  .desktop-feature-art-bruto .studio-home-indicator{background:#ffffff80}
   .studio-device-screen::before{
-    content:"";position:absolute;z-index:2;top:5px;left:33%;width:34%;height:3.5%;
-    min-height:9px;max-height:16px;border-radius:0 0 12px 12px;
+    content:"";position:absolute;z-index:3;top:-1px;left:33%;width:34%;height:4%;
+    border-radius:0 0 7cqw 7cqw;
     background:radial-gradient(circle at 80% 40%,#222b47 0 2px,transparent 3px),#0b0e16;
     box-shadow:0 1px 1px #ffffff19;
   }

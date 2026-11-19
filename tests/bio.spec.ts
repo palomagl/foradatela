@@ -7,7 +7,8 @@ const sites: Record<string,string> = {
   'Karoane':'https://karoane.vercel.app/',
   'Minhas Finanças':'https://minhasfinancas-steel-five.vercel.app/',
   'DOE+ RS':'https://doe-mais-rs.vercel.app/login',
-  'Bruto':'https://borapedir-delivery.vercel.app/bruto'
+  'Bruto':'https://borapedir-delivery.vercel.app/bruto',
+  'ROXO':'https://roxo-acaiteria.vercel.app/roxo'
 };
 
 test('8 visible apps, more projects, icons and social links',async({page})=>{
@@ -20,7 +21,7 @@ test('8 visible apps, more projects, icons and social links',async({page})=>{
   await expect(page.getByRole('button',{name:'Conhecer Barbearia'})).toBeVisible();
   await expect(page.getByRole('button',{name:'Conhecer Vértice'})).toBeVisible();
   await page.getByRole('button',{name:'Ver menos'}).click();
-  await expect(page.locator('.app-icon img')).toHaveCount(7);
+  await expect(page.locator('.app-icon img')).toHaveCount(8);
   await expect(page.getByRole('link',{name:'GitHub'})).toHaveAttribute('href','https://github.com/palomagl');
   await expect(page.getByRole('link',{name:'LinkedIn'})).toHaveAttribute('href','https://www.linkedin.com/in/palomagl');
   for(const img of await page.locator('.app-icon img').all()){
@@ -30,7 +31,7 @@ test('8 visible apps, more projects, icons and social links',async({page})=>{
   expect(errors).toEqual([]);
 });
 
-test('7 real projects open with correct destinations and screenshots stay inside gallery',async({page})=>{
+test('8 real projects open with correct destinations and screenshots stay inside gallery',async({page})=>{
   test.setTimeout(90000);
   await page.goto('/');
   for(const [project,url] of Object.entries(sites)){
@@ -39,7 +40,8 @@ test('7 real projects open with correct destinations and screenshots stay inside
     await expect(dialog).toBeVisible();
     await page.waitForTimeout(600); // Let the entrance transition finish before measuring image bounds.
     await expect(dialog.locator('a.cta')).toHaveAttribute('href',url);
-    if(['Stopou!','Ritmo','Minha Rotina','Karoane','Minhas Finanças','DOE+ RS','Bruto'].includes(project)){
+    await expect(dialog.getByRole('link',{name:'Ver código no GitHub'})).toHaveCount(0);
+    if(['Stopou!','Ritmo','Minha Rotina','Karoane','Minhas Finanças','DOE+ RS','Bruto','ROXO'].includes(project)){
       const presentation=dialog.locator('.project-showcase img');
       await expect(presentation).toBeVisible();
       expect(await presentation.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
@@ -135,7 +137,7 @@ test('desktop featured CTA links straight to the selected project, mobile still 
     await expect(karoane).toHaveAttribute('href','https://karoane.vercel.app/');
     const stage=page.locator('.desktop-stage-render');
     const colors=new Set<string>();
-    for(const name of ['Stopou!','Ritmo','Karoane','Minhas Finanças','Bruto']){
+    for(const name of ['Stopou!','Ritmo','Karoane','Minhas Finanças','Bruto','ROXO']){
       await page.getByRole('button',{name:'Conhecer '+name,exact:true}).hover();
       const screens=stage.locator('.studio-device-screen img');
       await expect(screens).toHaveCount(2);
@@ -155,7 +157,7 @@ test('desktop featured CTA links straight to the selected project, mobile still 
         expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(cta!.y);
       }
     }
-    expect(colors.size).toBe(5);
+    expect(colors.size).toBe(1);
   }else{
     await expect(stopou).toBeHidden();
     await page.getByRole('button',{name:'Conhecer Stopou!'}).click();
