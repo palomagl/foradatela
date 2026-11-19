@@ -17,7 +17,7 @@ const details: Record<string, { subtitle: string; description: string }> = {
   bruto: { subtitle: 'Hamburgueria · Demonstração', description: 'Uma experiência digital de hamburgueria: explore o cardápio, escolha produtos e conheça o fluxo de pedidos. Demonstração sem venda real.' },
   roxo: { subtitle: 'Açaiteria · Delivery', description: 'Explore o cardápio de açaís, monte seu copo com os acompanhamentos favoritos e confira os combos. Organize sua sacola e escolha entre entrega e retirada.' },
   barbearia: { subtitle: 'Agendamento de serviços', description: 'Uma experiência de agendamento para conhecer serviços e escolher horários em uma barbearia. Projeto em preparação.' },
-  vertice: { subtitle: 'Marmoraria · Projeto 3D', description: 'Uma vitrine digital para visualizar projetos de marmoraria e explorar opções de orçamento. Projeto em preparação.' },
+  vertice: { subtitle: 'Marmoraria · Projeto 3D', description: 'Simule bancadas de mármore, ajuste medidas, recortes e acabamentos e visualize o resultado em 3D. Escolha a pedra e gere uma proposta em PDF com medidas e orçamento.' },
 };
 
 type Theme = 'system' | 'light' | 'dark';
@@ -114,6 +114,12 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
+                </div>
+              ) : featured.showcase ? (
+                <div className="desktop-stage desktop-stage-showcase">
+                  <div className="desktop-stage-halo" aria-hidden="true" />
+                  <img className="desktop-stage-artwork" src={featured.showcase} width={900} height={675}
+                    alt={`Apresentação de ${featured.name}`} draggable={false} />
                 </div>
               ) : (
                 <div className="desktop-stage desktop-stage-coming" aria-label={`${featured.name}: ${featured.url ? 'prévia em preparação' : 'projeto em preparação'}`}>
@@ -237,7 +243,7 @@ export default function Home() {
               <button type="button" className="project-showcase" onClick={() => setExpandedScreenshot(-1)}
                 aria-label={`Ampliar apresentação de ${selected.name}`}>
                 <img src={selected.showcase} width={900} height={675} loading="eager" decoding="async"
-                  alt={`Apresentação de ${selected.name} com duas telas reais do aplicativo`} />
+                  alt={selected.id === 'vertice' ? 'Apresentação de Vértice com projeto em 3D e orçamento em PDF' : `Apresentação de ${selected.name} com duas telas reais do aplicativo`} />
               </button>
             ) : (
             <div className="gallery gallery-dual" aria-label={`Telas de ${selected.name}`}>

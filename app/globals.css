@@ -669,6 +669,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
   .universe[data-featured="doe"]{--fdt-project:215,86,102}
   .universe[data-featured="bruto"]{--fdt-project:224,91,49}
   .universe[data-featured="roxo"]{--fdt-project:166,115,203}
+  .universe[data-featured="vertice"]{--fdt-project:75,110,147}
   .universe::before,.universe::after{
     content:"";pointer-events:none;position:absolute;z-index:0;
     border-radius:50%;
@@ -795,6 +796,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text"
     max-width:580px;max-height:100%;
     user-select:none;pointer-events:none;
     perspective:1500px;container-type:size;
+  }
+  .desktop-stage-artwork{
+    position:relative;z-index:1;display:block;width:100%;height:auto;max-height:100%;
+    object-fit:contain;border-radius:22px;
+    box-shadow:0 18px 45px #0a172633;
   }
   .studio-floor-shadow{
     position:absolute;left:5%;right:5%;bottom:3%;height:10%;

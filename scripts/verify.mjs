@@ -24,6 +24,11 @@ for(const slug of slugs){
   }
 }
 const layout=fs.readFileSync('app/layout.tsx','utf8');
+const verticeIcon=fs.readFileSync('public/projects/vertice.png');
+assert.equal(verticeIcon.subarray(1,4).toString(),'PNG');
+const verticeShowcase=fs.readFileSync('public/projects/vertice/showcase.webp');
+assert.equal(verticeShowcase.toString('ascii',0,4),'RIFF');
+assert.equal(verticeShowcase.toString('ascii',8,12),'WEBP');
 const backtick=String.fromCharCode(96);
 const themeSource=layout.split('const themeScript = '+backtick)[1].split(backtick)[0];
 assert.ok(themeSource);
@@ -35,4 +40,4 @@ for(const saved of [null,'dark','light']){
 }
 assert.ok(fs.readFileSync('components/liquid-glass-scene.tsx','utf8').includes('webgl'));
 assert.ok(fs.readFileSync('lib/projects.ts','utf8').includes('https://www.linkedin.com/in/palomagl'));
-console.log('OK: 8 visible apps + more projects, 8 icons, 16 screenshots, theme, glass renderer and LinkedIn.');
+console.log('OK: 8 visible apps + more projects, 9 icons, 16 screenshots, Vértice showcase, theme, glass renderer and LinkedIn.');

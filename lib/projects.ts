@@ -9,7 +9,7 @@ export const projects: Project[] = [
   { id: 'bruto', name: 'Bruto', url: 'https://borapedir-delivery.vercel.app/bruto', icon: '/projects/bruto.png', showcase: '/projects/bruto/showcase.webp?v=approved-20261029', screenshots: ['/projects/bruto/screen-01.png', '/projects/bruto/screen-02.png'], headline: 'Deu fome? Conheça o Bruto.' },
   { id: 'roxo', name: 'ROXO', icon: '/projects/roxo.png', headline: 'Açaí do seu jeito.', url: 'https://roxo-acaiteria.vercel.app/roxo', showcase: '/projects/roxo/showcase.webp', screenshots: ['/projects/roxo/screen-01.png', '/projects/roxo/screen-02.png'] },
   { id: 'barbearia', name: 'Barbearia', screenshots: [], headline: 'Seu próximo corte, sem complicação.' },
-  { id: 'vertice', name: 'Vértice', screenshots: [], headline: 'Seu espaço começa com uma ideia.' },
+  { id: 'vertice', name: 'Vértice', icon: '/projects/vertice.png', url: 'https://vertice-marmores.vercel.app/', showcase: '/projects/vertice/showcase.webp', screenshots: [], headline: 'Da ideia ao orçamento, em 3D.' },
 ];
 export const profile = { name: 'Paloma', github: process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/palomagl', linkedin: 'https://www.linkedin.com/in/palomagl', email: process.env.NEXT_PUBLIC_EMAIL };
 

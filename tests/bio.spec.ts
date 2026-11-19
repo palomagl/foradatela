@@ -8,7 +8,8 @@ const sites: Record<string,string> = {
   'Minhas Finanças':'https://minhasfinancas-steel-five.vercel.app/',
   'DOE+ RS':'https://doe-mais-rs.vercel.app/login',
   'Bruto':'https://borapedir-delivery.vercel.app/bruto',
-  'ROXO':'https://roxo-acaiteria.vercel.app/roxo'
+  'ROXO':'https://roxo-acaiteria.vercel.app/roxo',
+  'Vértice':'https://vertice-marmores.vercel.app/'
 };
 
 test('8 visible apps, more projects, icons and social links',async({page})=>{
@@ -31,17 +32,18 @@ test('8 visible apps, more projects, icons and social links',async({page})=>{
   expect(errors).toEqual([]);
 });
 
-test('8 real projects open with correct destinations and screenshots stay inside gallery',async({page})=>{
+test('9 published projects open with correct destinations and presentations stay inside gallery',async({page})=>{
   test.setTimeout(90000);
   await page.goto('/');
   for(const [project,url] of Object.entries(sites)){
+    if(project==='Vértice') await page.getByRole('button',{name:'Ver mais projetos'}).click();
     await page.getByRole('button',{name:'Conhecer '+project,exact:true}).click();
     const dialog=page.getByRole('dialog');
     await expect(dialog).toBeVisible();
     await page.waitForTimeout(600); // Let the entrance transition finish before measuring image bounds.
     await expect(dialog.locator('a.cta')).toHaveAttribute('href',url);
     await expect(dialog.getByRole('link',{name:'Ver código no GitHub'})).toHaveCount(0);
-    if(['Stopou!','Ritmo','Minha Rotina','Karoane','Minhas Finanças','DOE+ RS','Bruto','ROXO'].includes(project)){
+    if(['Stopou!','Ritmo','Minha Rotina','Karoane','Minhas Finanças','DOE+ RS','Bruto','ROXO','Vértice'].includes(project)){
       const presentation=dialog.locator('.project-showcase img');
       await expect(presentation).toBeVisible();
       expect(await presentation.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
@@ -77,7 +79,7 @@ test('8 real projects open with correct destinations and screenshots stay inside
 test('unpublished apps have no dead external links',async({page})=>{
   await page.goto('/');
   await page.getByRole('button',{name:'Ver mais projetos'}).click();
-  for(const project of ['Barbearia','Vértice']){
+  for(const project of ['Barbearia']){
     await page.getByRole('button',{name:'Conhecer '+project}).click();
     await expect(page.getByRole('dialog')).toContainText('Projeto em preparação');
     await expect(page.getByRole('dialog').locator('a.cta')).toHaveCount(0);
@@ -158,6 +160,12 @@ test('desktop featured CTA links straight to the selected project, mobile still 
       }
     }
     expect(colors.size).toBe(1);
+    await page.getByRole('button',{name:'Ver mais projetos'}).click();
+    await page.getByRole('button',{name:'Conhecer Vértice',exact:true}).hover();
+    const artwork=page.locator('.desktop-stage-artwork');
+    await expect(artwork).toBeVisible();
+    await expect.poll(()=>artwork.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
+    await expect(page.getByRole('link',{name:'Conhecer projeto Vértice diretamente'})).toHaveAttribute('href',sites['Vértice']);
   }else{
     await expect(stopou).toBeHidden();
     await page.getByRole('button',{name:'Conhecer Stopou!'}).click();
