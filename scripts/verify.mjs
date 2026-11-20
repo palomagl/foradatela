@@ -10,7 +10,7 @@ for(const asset of html.matchAll(/(?:src|href)="(\/(?:_next\/static|projects)\/[
   const local=asset[1].startsWith('/_next/')?'.next/'+asset[1].slice('/_next/'.length):'public'+asset[1];
   assert.ok(fs.existsSync(local),'Missing asset: '+local);
 }
-const slugs=['stopou','ritimo','rotina','karoane','financas','doe','bruto','roxo'];
+const slugs=['stopou','ritimo','rotina','karoane','financas','doe','bruto','roxo','vertice'];
 for(const slug of slugs){
   const icon=fs.readFileSync('public/projects/'+slug+'.png');
   assert.equal(icon.subarray(1,4).toString(),'PNG');
@@ -24,8 +24,6 @@ for(const slug of slugs){
   }
 }
 const layout=fs.readFileSync('app/layout.tsx','utf8');
-const verticeIcon=fs.readFileSync('public/projects/vertice.png');
-assert.equal(verticeIcon.subarray(1,4).toString(),'PNG');
 const verticeShowcase=fs.readFileSync('public/projects/vertice/showcase.webp');
 assert.equal(verticeShowcase.toString('ascii',0,4),'RIFF');
 assert.equal(verticeShowcase.toString('ascii',8,12),'WEBP');
@@ -40,4 +38,4 @@ for(const saved of [null,'dark','light']){
 }
 assert.ok(fs.readFileSync('components/liquid-glass-scene.tsx','utf8').includes('webgl'));
 assert.ok(fs.readFileSync('lib/projects.ts','utf8').includes('https://www.linkedin.com/in/palomagl'));
-console.log('OK: 8 visible apps + more projects, 9 icons, 16 screenshots, Vértice showcase, theme, glass renderer and LinkedIn.');
+console.log('OK: 8 visible apps + more projects, 9 icons, 18 screenshots, Vértice showcase, theme, glass renderer and LinkedIn.');

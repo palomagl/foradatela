@@ -162,9 +162,15 @@ test('desktop featured CTA links straight to the selected project, mobile still 
     expect(colors.size).toBe(1);
     await page.getByRole('button',{name:'Ver mais projetos'}).click();
     await page.getByRole('button',{name:'Conhecer Vértice',exact:true}).hover();
-    const artwork=page.locator('.desktop-stage-artwork');
-    await expect(artwork).toBeVisible();
-    await expect.poll(()=>artwork.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
+    await expect(page.locator('.studio-device')).toHaveCount(2);
+    await expect(page.locator('.studio-plinth')).toBeVisible();
+    const verticeScreens=page.locator('.studio-device-screen img');
+    await expect(verticeScreens).toHaveCount(2);
+    for(const screen of await verticeScreens.all()){
+      await expect.poll(()=>screen.evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
+    }
+    await expect(page.locator('.desktop-stage-artwork')).toHaveCount(0);
+    expect(await page.locator('.studio-plinth').evaluate(e=>getComputedStyle(e).backgroundImage)).toBe([...colors][0]);
     await expect(page.getByRole('link',{name:'Conhecer projeto Vértice diretamente'})).toHaveAttribute('href',sites['Vértice']);
   }else{
     await expect(stopou).toBeHidden();

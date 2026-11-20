@@ -30,6 +30,7 @@ const legacy: Record<string, {
   doe: { sizes: [[361, 735], [348, 720]], crops: [[5, 31, 345, 696], [0, 37, 333, 683]], background: '#f7f7f7', statusBackground: '#ed1518', statusInk: '#fff' },
   bruto: { sizes: [[324, 713], [346, 723]], crops: [[0, 26, 322, 687], [0, 30, 327, 671]], background: '#101010', statusBackground: '#101010', statusInk: '#fff' },
   roxo: { sizes: [[1170, 2532], [1170, 2532]], crops: [[0, 0, 1170, 2532], [0, 0, 1170, 2532]], background: '#faf7f4', statusBackground: '#faf7f4', statusInk: '#4a2057' },
+  vertice: { sizes: [[1170, 2532], [1170, 2532]], crops: [[0, 0, 1170, 2532], [0, 0, 1170, 2532]], background: '#f3f4f6', statusBackground: '#0f1c30', statusInk: '#fff' },
 };
 
 export function desktopScreens(project: Project): Screen[] {
